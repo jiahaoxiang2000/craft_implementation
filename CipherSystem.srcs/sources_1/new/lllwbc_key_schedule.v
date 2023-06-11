@@ -1,7 +1,8 @@
 module lllwbc_key_schedule (
-    input [127:0] key,
-    output [63:0] kws[1:0],
-    output [31:0] krs[20:0]);
+    input  [127:0] key,
+    output [127:0] kws,
+    output [671:0] krs
+);
 
 
-endmodule // lllwbc_key_schedule
+endmodule  // lllwbc_key_schedule
