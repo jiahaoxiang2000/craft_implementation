@@ -1,13 +1,13 @@
 `timescale 1ns / 1ps
 module top_tb;
-  parameter Tt = 20;  // clock timout
-  reg clk;
+
   wire test;
+  reg clk;
 
   // simulation init
   initial begin
     clk = 0;
-    forever clk = #(Tt / 2) ~clk;
+    forever clk = #(1) ~clk;
   end
 
   top top_instan (

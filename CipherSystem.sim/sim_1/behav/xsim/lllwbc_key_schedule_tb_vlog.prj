@@ -1,7 +1,7 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
-"../../../../CipherSystem.srcs/sources_1/new/top.v" \
-"../../../../CipherSystem.srcs/sources_1/new/top_tb.v" \
+"../../../../CipherSystem.srcs/sources_1/new/lllwbc_key_schedule.v" \
+"../../../../CipherSystem.srcs/sources_1/new/lllwbc_key_schedule_tb.v" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"
