@@ -1,8 +1,7 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
-"../../../../../src/utils/display.v" \
-"../../../../../src/top.v" \
-"../../../../../src/top_tb.v" \
+"../../../../../src/craft/craft_key_schedule.v" \
+"../../../../../src/benchtest/tb_craft_key_schedule.v" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"
