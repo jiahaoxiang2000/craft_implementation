@@ -2,48 +2,19 @@
 
 module top (
     input wire CLK100MHZ,
-    input wire CPU_RESETN,
-    output CA,
-    output CB,
-    output CC,
-    output CD,
-    output CE,
-    output CF,
-    output CG,
-    output DP,
-    output [7:0] AN
+    input wire CPU_RESETN
 );
   parameter CLK_FREQUENCY = 100_000_000;
 
-  // display 
-  //   wire [31:0] data = 32'hffffffff;
-  //   wire        en;
-  //   assign en = 1'b1;
+  wire [  8-1:0] round = 8'h00;
+  wire [128-1:0] key;
+  wire [ 64-1:0] tweak;
+  wire [ 64-1:0] TK = 32'hffffffff;
 
-  //   display #(
-  //       .CLK_FREQUENCY(CLK_FREQUENCY)
-  //   ) display_inst (
-  //       .en  (en),
-  //       .clk (CLK100MHZ),
-  //       .rstn(CPU_RESETN),
-  //       .data(data),
-  //       .CA  (CA),
-  //       .CB  (CB),
-  //       .CC  (CC),
-  //       .CD  (CD),
-  //       .CE  (CE),
-  //       .CF  (CF),
-  //       .CG  (CG),
-  //       .DP  (DP),
-  //       .AN  (AN)
-  //   );
+  assign key   = 128'h27a6_781a_43f3_64bc_9167_08d5_fbb5_aefe;
+  assign tweak = 64'h54cd_94ff_d067_0a58;
 
-  reg  [  8-1:0] round = 8'h00;
-  reg  [128-1:0] key;
-  reg  [ 64-1:0] tweak;
-  wire [ 64-1:0] TK;
-
-  craft_key_schedule key_schedule (
+   (* dont_touch = "yes" *) craft_key_schedule key_schedule (
       .key(key),
       .tweak(tweak),
       .r(round),

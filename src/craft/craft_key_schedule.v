@@ -4,7 +4,7 @@ module craft_key_schedule (
     input [8-1:0] r,
     output wire [64-1:0] TK
 );
-  wire [ 3:0] i;
+
   wire [63:0] t_key;
   wire [63:0] t_tweak;
   function [63 : 0] q_permutation(input [63 : 0] data);
