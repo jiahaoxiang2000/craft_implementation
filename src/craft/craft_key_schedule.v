@@ -2,9 +2,11 @@ module craft_key_schedule (
     input wire [128-1:0] key,
     input wire [64-1:0] tweak,
     input [8-1:0] r,
-    output reg [64-1:0] TK
+    output wire [64-1:0] TK
 );
-  wire [3:0] i;
+  wire [ 3:0] i;
+  wire [63:0] t_key;
+  wire [63:0] t_tweak;
   function [63 : 0] q_permutation(input [63 : 0] data);
     begin
       // 12, 10, 15, 5, 14, 8, 9, 2, 11, 3, 7, 4, 6, 0, 1, 13]
@@ -27,22 +29,11 @@ module craft_key_schedule (
     end
   endfunction  // q_permutation
 
-  always @(*) begin : key_schedule
-    case (r % 4)
-      0: begin
-        TK = key[127-:64] ^ tweak;
-      end
-      1: begin
-        TK = key[63-:64] ^ tweak;
-      end
-      2: begin
-        TK = key[127-:64] ^ q_permutation(tweak);
-      end
-      3: begin
-        TK = key[63-:64] ^ q_permutation(tweak);
-      end
-    endcase
-  end
+  assign t_key = (r % 2 == 0) ? key[127-:64] : key[63-:64];
+  assign t_tweak = (r % 4 < 2) ? tweak : q_permutation(tweak);
+
+
+  assign TK = t_key ^ t_tweak;
 
 
 endmodule  //craft_key_schedule
