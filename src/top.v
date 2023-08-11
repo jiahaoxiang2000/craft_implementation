@@ -44,6 +44,12 @@ module top (
       .rc (rc)
   );
 
+  reg  [15:0] din = 16'h4567;
+  wire [15:0] dout;
 
+  (* dont_touch = "yes" *) craft_sbox craft_sbox_inst (
+      .din (din),
+      .dout(dout)
+  );
 
 endmodule
