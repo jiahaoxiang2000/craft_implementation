@@ -1,7 +1,8 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
+"../../../../../src/craft/craft_round.v" \
 "../../../../../src/craft/craft_sbox.v" \
-"../../../../../src/benchtest/tb_craft_sbox.v" \
+"../../../../../src/benchtest/tb_craft_round.v" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"
