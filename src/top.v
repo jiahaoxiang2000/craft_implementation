@@ -13,7 +13,6 @@ module top (
   wire [64-1:0] TK;
   reg flag;
 
-  reg CE = 1'b1;
   wire [7:0] rc;
 
   assign key   = 128'h27a6_781a_43f3_64bc_9167_08d5_fbb5_aefe;
@@ -40,7 +39,6 @@ module top (
   (* dont_touch = "yes" *) craft_round_constants craft_round_constants_isnt (
       .clk(CLK100MHZ),
       .rst(CPU_RESETN),
-      .ce (CE),
       .rc (rc)
   );
 

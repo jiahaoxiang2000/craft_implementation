@@ -1,6 +1,5 @@
 module craft_round_constants (
     input clk,
-    input ce,
     input rst,
     output [7:0] rc
 );
@@ -11,14 +10,14 @@ module craft_round_constants (
 
   always @(posedge clk)
     if (rst) a <= 4'h1;
-    else if (ce) begin
+    else  begin
       a[2:0] <= a[3:1];
       a[3]   <= a[1] ^ a[0];
     end
 
   always @(posedge clk)
     if (rst) b <= 3'h1;
-    else if (ce) begin
+    else begin
       b[1:0] <= b[2:1];
       b[2]   <= b[1] ^ b[0];
     end
