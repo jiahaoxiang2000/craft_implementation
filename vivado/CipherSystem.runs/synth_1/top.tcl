@@ -71,6 +71,7 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param checkpoint.writeSynthRtdsInDcp 1
+set_param chipscope.maxJobs 5
 set_param synth.incrementalSynthesisCache C:/Users/xjh/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-440-xjh-main-pc/incrSyn
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
@@ -93,6 +94,7 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
   C:/Users/xjh/Documents/GitHub/CipherSystem/src/craft/craft_key_schedule.v
+  C:/Users/xjh/Documents/GitHub/CipherSystem/src/craft/craft_round.v
   C:/Users/xjh/Documents/GitHub/CipherSystem/src/craft/craft_round_constants.v
   C:/Users/xjh/Documents/GitHub/CipherSystem/src/craft/craft_sbox.v
   C:/Users/xjh/Documents/GitHub/CipherSystem/src/top.v

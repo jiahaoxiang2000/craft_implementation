@@ -128,14 +128,32 @@ set rc [catch {
   set_param chipscope.maxJobs 5
   set_param synth.incrementalSynthesisCache C:/Users/xjh/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-440-xjh-main-pc/incrSyn
   set_param runs.launchOptions { -jobs 20  }
-  reset_param project.defaultXPMLibraries 
-  open_checkpoint C:/Users/xjh/Documents/GitHub/CipherSystem/vivado/CipherSystem.runs/impl_1/top.dcp
+OPTRACE "create in-memory project" START { }
+  create_project -in_memory -part xc7a100tcsg324-1
+  set_property board_part digilentinc.com:nexys-a7-100t:part0:1.3 [current_project]
+  set_property design_mode GateLvl [current_fileset]
+  set_param project.singleFileAddWarning.threshold 0
+OPTRACE "create in-memory project" END { }
+OPTRACE "set parameters" START { }
   set_property webtalk.parent_dir C:/Users/xjh/Documents/GitHub/CipherSystem/vivado/CipherSystem.cache/wt [current_project]
   set_property parent.project_path C:/Users/xjh/Documents/GitHub/CipherSystem/vivado/CipherSystem.xpr [current_project]
   set_property ip_repo_paths C:/Users/xjh/Documents/GitHub/tools/Xilinx/library/vivado-library-zmod-v1-2019.1-2 [current_project]
   update_ip_catalog
   set_property ip_output_repo C:/Users/xjh/Documents/GitHub/CipherSystem/vivado/CipherSystem.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
+OPTRACE "set parameters" END { }
+OPTRACE "add files" START { }
+  add_files -quiet C:/Users/xjh/Documents/GitHub/CipherSystem/vivado/CipherSystem.runs/synth_1/top.dcp
+OPTRACE "read constraints: implementation" START { }
+  read_xdc -mode out_of_context C:/Users/xjh/Documents/GitHub/CipherSystem/vivado/CipherSystem.srcs/craft_key_schedule/new/craft_key_schedule_ooc.xdc
+  read_xdc C:/Users/xjh/Documents/GitHub/CipherSystem/vivado/CipherSystem.srcs/constrs_1/imports/digilent-xdc-master/Nexys-A7-100T-Master.xdc
+OPTRACE "read constraints: implementation" END { }
+OPTRACE "add files" END { }
+OPTRACE "link_design" START { }
+  link_design -top top -part xc7a100tcsg324-1 
+OPTRACE "link_design" END { }
+OPTRACE "gray box cells" START { }
+OPTRACE "gray box cells" END { }
 OPTRACE "init_design_reports" START { REPORT }
 OPTRACE "init_design_reports" END { }
 OPTRACE "init_design_write_hwdef" START { }

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Fri Aug 11 20:52:39 2023
+| Date         : Sat Aug 12 10:34:19 2023
 | Host         : xjh-main-pc running 64-bit major release  (build 9200)
 | Command      : report_drc -file top_drc_routed.rpt -pb top_drc_routed.pb -rpx top_drc_routed.rpx
 | Design       : top
@@ -20,7 +20,7 @@ Table of Contents
 1. REPORT SUMMARY
 -----------------
             Netlist: netlist
-          Floorplan: checkpoint_top
+          Floorplan: design_1
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
@@ -49,7 +49,7 @@ Related violations: <none>
 
 RTSTAT-10#1 Warning
 No routable loads  
-16 net(s) have no routable loads. The problem bus(es) and/or net(s) are craft_sbox_inst/dout[15:0].
+80 net(s) have no routable loads. The problem bus(es) and/or net(s) are craft_round_inst/dout[63:0], craft_sbox_inst/dout[15:0].
 Related violations: <none>
 
 

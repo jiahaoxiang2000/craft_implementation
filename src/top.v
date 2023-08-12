@@ -52,4 +52,16 @@ module top (
       .dout(dout)
   );
 
+  reg  [63:0] r_din = 64'h5734F006D8D88A3E;
+  reg  [63:0] r_tk = 64'h736BECE593946EE4;
+  reg  [ 7:0] r_rc = 8'h11;
+  wire [63:0] r_dout;
+
+  (* dont_touch = "yes" *) craft_round craft_round_inst (
+      .din (r_din),
+      .tk  (r_tk),
+      .rc  (r_rc),
+      .dout(r_dout)
+  );
+
 endmodule
