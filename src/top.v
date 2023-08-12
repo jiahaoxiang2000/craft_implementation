@@ -62,4 +62,20 @@ module top (
       .dout(r_dout)
   );
 
+  reg [63:0] plaintext = 64'h5734F006D8D88A3E;
+  reg [63:0] tweak = 64'h54CD94FFD0670A58;
+  reg [127:0] key = 128'h27a6_781a_43f3_64bc_9167_08d5_fbb5_aefe;
+  wire done;
+  wire [63:0] ciphertext;
+
+  (* dont_touch = "yes" *) craft_encrypt craft_encrypt_inst (
+      .clk(CLK100MHZ),
+      .rst_n(CPU_RESETN),
+      .plaintext(plaintext),
+      .tweak(tweak),
+      .key(key),
+      .done(done),
+      .ciphertext(ciphertext)
+  );
+
 endmodule

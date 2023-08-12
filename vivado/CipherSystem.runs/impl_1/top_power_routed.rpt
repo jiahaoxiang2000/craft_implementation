@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date             : Sat Aug 12 10:34:20 2023
+| Date             : Sat Aug 12 15:40:31 2023
 | Host             : xjh-main-pc running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.085        |
+| Total On-Chip Power (W)  | 0.087        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.001        |
+| Dynamic (W)              | 0.003        |
 | Device Static (W)        | 0.084        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 84.6         |
@@ -52,15 +52,15 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |      224 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      171 |     63400 |            0.27 |
-|   Register     |    <0.001 |        8 |    126800 |           <0.01 |
-|   Others       |     0.000 |        3 |       --- |             --- |
-| Signals        |    <0.001 |      139 |       --- |             --- |
+| Clocks         |     0.001 |        3 |       --- |             --- |
+| Slice Logic    |    <0.001 |      591 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      358 |     63400 |            0.56 |
+|   Register     |    <0.001 |      152 |    126800 |            0.12 |
+|   Others       |     0.000 |        7 |       --- |             --- |
+| Signals        |    <0.001 |      355 |       --- |             --- |
 | I/O            |    <0.001 |        3 |       210 |            1.43 |
 | Static Power   |     0.084 |          |           |                 |
-| Total          |     0.085 |          |           |                 |
+| Total          |     0.087 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -70,7 +70,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.016 |       0.001 |      0.015 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.018 |       0.003 |      0.015 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.018 |       0.000 |      0.018 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -136,10 +136,11 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+------+-----------+
-| Name | Power (W) |
-+------+-----------+
-| top  |     0.001 |
-+------+-----------+
++----------------------+-----------+
+| Name                 | Power (W) |
++----------------------+-----------+
+| top                  |     0.003 |
+|   craft_encrypt_inst |     0.002 |
++----------------------+-----------+
 
 

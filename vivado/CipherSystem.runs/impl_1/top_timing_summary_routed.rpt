@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Sat Aug 12 10:34:20 2023
+| Date         : Sat Aug 12 15:40:31 2023
 | Host         : xjh-main-pc running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file top_timing_summary_routed.rpt -pb top_timing_summary_routed.pb -rpx top_timing_summary_routed.rpx -warn_on_violation
 | Design       : top
@@ -141,7 +141,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      8.590        0.000                      0                    7        0.128        0.000                      0                    7        4.500        0.000                       0                     9  
+      4.658        0.000                      0                  287        0.128        0.000                      0                  287        4.500        0.000                       0                   153  
 
 
 All user specified timing constraints are met.
@@ -164,7 +164,7 @@ sys_clk_pin  {0.000 5.000}      10.000          100.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-sys_clk_pin         8.590        0.000                      0                    7        0.128        0.000                      0                    7        4.500        0.000                       0                     9  
+sys_clk_pin         4.658        0.000                      0                  287        0.128        0.000                      0                  287        4.500        0.000                       0                   153  
 
 
 ------------------------------------------------------------------------------------------------
@@ -215,7 +215,7 @@ Path Group    From Clock    To Clock
 From Clock:  sys_clk_pin
   To Clock:  sys_clk_pin
 
-Setup :            0  Failing Endpoints,  Worst Slack        8.590ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        4.658ns,  Total Violation        0.000ns
 Hold  :            0  Failing Endpoints,  Worst Slack        0.128ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        4.500ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
@@ -223,20 +223,20 @@ PW    :            0  Failing Endpoints,  Worst Slack        4.500ns,  Total Vio
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             8.590ns  (required time - arrival time)
-  Source:                 craft_round_constants_isnt/b_reg[1]/C
+Slack (MET) :             4.658ns  (required time - arrival time)
+  Source:                 craft_encrypt_inst/r_reg[1]/C
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            craft_round_constants_isnt/b_reg[2]/D
+  Destination:            craft_encrypt_inst/state_reg[34]/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        1.406ns  (logic 0.715ns (50.854%)  route 0.691ns (49.146%))
-  Logic Levels:           1  (LUT2=1)
-  Clock Path Skew:        0.000ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.186ns = ( 15.186 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.496ns
-    Clock Pessimism Removal (CPR):    0.309ns
+  Data Path Delay:        5.209ns  (logic 0.890ns (17.087%)  route 4.319ns (82.913%))
+  Logic Levels:           3  (LUT2=1 LUT6=2)
+  Clock Path Skew:        -0.127ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.922ns = ( 14.922 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.308ns
+    Clock Pessimism Removal (CPR):    0.259ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -252,14 +252,18 @@ Slack (MET) :             8.590ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           2.025     3.506    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.893     5.496    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/C
+                         net (fo=152, routed)         1.706     5.308    craft_encrypt_inst/clk
+    SLICE_X6Y139         FDRE                                         r  craft_encrypt_inst/r_reg[1]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X0Y155         FDRE (Prop_fdre_C_Q)         0.419     5.915 r  craft_round_constants_isnt/b_reg[1]/Q
-                         net (fo=2, routed)           0.691     6.606    craft_round_constants_isnt/rc[1]
-    SLICE_X0Y155         LUT2 (Prop_lut2_I1_O)        0.296     6.902 r  craft_round_constants_isnt/b[2]_i_1/O
-                         net (fo=1, routed)           0.000     6.902    craft_round_constants_isnt/p_0_out[2]
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/D
+    SLICE_X6Y139         FDRE (Prop_fdre_C_Q)         0.518     5.826 r  craft_encrypt_inst/r_reg[1]/Q
+                         net (fo=71, routed)          2.906     8.732    craft_encrypt_inst/r_reg_n_0_[1]
+    SLICE_X10Y130        LUT6 (Prop_lut6_I1_O)        0.124     8.856 r  craft_encrypt_inst/ciphertext[19]_i_2/O
+                         net (fo=1, routed)           0.286     9.143    craft_encrypt_inst/tk[19]
+    SLICE_X10Y130        LUT2 (Prop_lut2_I0_O)        0.124     9.267 r  craft_encrypt_inst/ciphertext[19]_i_1/O
+                         net (fo=5, routed)           1.126    10.393    craft_encrypt_inst/add_key[19]
+    SLICE_X9Y132         LUT6 (Prop_lut6_I0_O)        0.124    10.517 r  craft_encrypt_inst/state[34]_i_1/O
+                         net (fo=1, routed)           0.000    10.517    craft_encrypt_inst/p_1_in[34]
+    SLICE_X9Y132         FDRE                                         r  craft_encrypt_inst/state_reg[34]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -269,31 +273,31 @@ Slack (MET) :             8.590ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           1.920    13.331    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.764    15.186    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/C
-                         clock pessimism              0.309    15.496    
-                         clock uncertainty           -0.035    15.460    
-    SLICE_X0Y155         FDRE (Setup_fdre_C_D)        0.031    15.491    craft_round_constants_isnt/b_reg[2]
+                         net (fo=152, routed)         1.500    14.922    craft_encrypt_inst/clk
+    SLICE_X9Y132         FDRE                                         r  craft_encrypt_inst/state_reg[34]/C
+                         clock pessimism              0.259    15.181    
+                         clock uncertainty           -0.035    15.146    
+    SLICE_X9Y132         FDRE (Setup_fdre_C_D)        0.029    15.175    craft_encrypt_inst/state_reg[34]
   -------------------------------------------------------------------
-                         required time                         15.491    
-                         arrival time                          -6.902    
+                         required time                         15.175    
+                         arrival time                         -10.517    
   -------------------------------------------------------------------
-                         slack                                  8.590    
+                         slack                                  4.658    
 
-Slack (MET) :             8.664ns  (required time - arrival time)
-  Source:                 craft_round_constants_isnt/a_reg[2]/C
+Slack (MET) :             4.661ns  (required time - arrival time)
+  Source:                 craft_encrypt_inst/r_reg[1]/C
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            craft_round_constants_isnt/a_reg[1]/D
+  Destination:            craft_encrypt_inst/state_reg[35]/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        1.219ns  (logic 0.456ns (37.397%)  route 0.763ns (62.603%))
-  Logic Levels:           0  
-  Clock Path Skew:        0.000ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.186ns = ( 15.186 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.496ns
-    Clock Pessimism Removal (CPR):    0.309ns
+  Data Path Delay:        5.208ns  (logic 0.890ns (17.090%)  route 4.318ns (82.910%))
+  Logic Levels:           3  (LUT2=1 LUT6=2)
+  Clock Path Skew:        -0.127ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.922ns = ( 14.922 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.308ns
+    Clock Pessimism Removal (CPR):    0.259ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -309,12 +313,18 @@ Slack (MET) :             8.664ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           2.025     3.506    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.893     5.496    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[2]/C
+                         net (fo=152, routed)         1.706     5.308    craft_encrypt_inst/clk
+    SLICE_X6Y139         FDRE                                         r  craft_encrypt_inst/r_reg[1]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y155         FDRE (Prop_fdre_C_Q)         0.456     5.952 r  craft_round_constants_isnt/a_reg[2]/Q
-                         net (fo=1, routed)           0.763     6.715    craft_round_constants_isnt/rc[6]
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[1]/D
+    SLICE_X6Y139         FDRE (Prop_fdre_C_Q)         0.518     5.826 r  craft_encrypt_inst/r_reg[1]/Q
+                         net (fo=71, routed)          2.906     8.732    craft_encrypt_inst/r_reg_n_0_[1]
+    SLICE_X10Y130        LUT6 (Prop_lut6_I1_O)        0.124     8.856 r  craft_encrypt_inst/ciphertext[19]_i_2/O
+                         net (fo=1, routed)           0.286     9.143    craft_encrypt_inst/tk[19]
+    SLICE_X10Y130        LUT2 (Prop_lut2_I0_O)        0.124     9.267 f  craft_encrypt_inst/ciphertext[19]_i_1/O
+                         net (fo=5, routed)           1.125    10.392    craft_encrypt_inst/add_key[19]
+    SLICE_X9Y132         LUT6 (Prop_lut6_I1_O)        0.124    10.516 r  craft_encrypt_inst/state[35]_i_1/O
+                         net (fo=1, routed)           0.000    10.516    craft_encrypt_inst/p_1_in[35]
+    SLICE_X9Y132         FDRE                                         r  craft_encrypt_inst/state_reg[35]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -324,31 +334,31 @@ Slack (MET) :             8.664ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           1.920    13.331    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.764    15.186    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[1]/C
-                         clock pessimism              0.309    15.496    
-                         clock uncertainty           -0.035    15.460    
-    SLICE_X1Y155         FDRE (Setup_fdre_C_D)       -0.081    15.379    craft_round_constants_isnt/a_reg[1]
+                         net (fo=152, routed)         1.500    14.922    craft_encrypt_inst/clk
+    SLICE_X9Y132         FDRE                                         r  craft_encrypt_inst/state_reg[35]/C
+                         clock pessimism              0.259    15.181    
+                         clock uncertainty           -0.035    15.146    
+    SLICE_X9Y132         FDRE (Setup_fdre_C_D)        0.031    15.177    craft_encrypt_inst/state_reg[35]
   -------------------------------------------------------------------
-                         required time                         15.379    
-                         arrival time                          -6.715    
+                         required time                         15.177    
+                         arrival time                         -10.516    
   -------------------------------------------------------------------
-                         slack                                  8.664    
+                         slack                                  4.661    
 
-Slack (MET) :             8.772ns  (required time - arrival time)
-  Source:                 craft_round_constants_isnt/a_reg[1]/C
+Slack (MET) :             4.679ns  (required time - arrival time)
+  Source:                 craft_encrypt_inst/r_reg[1]/C
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            craft_round_constants_isnt/a_reg[0]/D
-                            (rising edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            craft_encrypt_inst/state_reg[19]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        1.126ns  (logic 0.456ns (40.511%)  route 0.670ns (59.489%))
-  Logic Levels:           0  
-  Clock Path Skew:        0.000ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.186ns = ( 15.186 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.496ns
-    Clock Pessimism Removal (CPR):    0.309ns
+  Data Path Delay:        5.239ns  (logic 0.890ns (16.989%)  route 4.349ns (83.011%))
+  Logic Levels:           3  (LUT3=1 LUT6=2)
+  Clock Path Skew:        -0.126ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.923ns = ( 14.923 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.308ns
+    Clock Pessimism Removal (CPR):    0.259ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -364,12 +374,18 @@ Slack (MET) :             8.772ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           2.025     3.506    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.893     5.496    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[1]/C
+                         net (fo=152, routed)         1.706     5.308    craft_encrypt_inst/clk
+    SLICE_X6Y139         FDRE                                         r  craft_encrypt_inst/r_reg[1]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y155         FDRE (Prop_fdre_C_Q)         0.456     5.952 r  craft_round_constants_isnt/a_reg[1]/Q
-                         net (fo=2, routed)           0.670     6.621    craft_round_constants_isnt/rc[5]
-    SLICE_X1Y155         FDSE                                         r  craft_round_constants_isnt/a_reg[0]/D
+    SLICE_X6Y139         FDRE (Prop_fdre_C_Q)         0.518     5.826 r  craft_encrypt_inst/r_reg[1]/Q
+                         net (fo=71, routed)          3.041     8.868    craft_encrypt_inst/r_reg_n_0_[1]
+    SLICE_X11Y131        LUT6 (Prop_lut6_I1_O)        0.124     8.992 r  craft_encrypt_inst/ciphertext[33]_i_2/O
+                         net (fo=1, routed)           0.640     9.631    craft_encrypt_inst/tk[33]
+    SLICE_X11Y131        LUT3 (Prop_lut3_I0_O)        0.124     9.755 f  craft_encrypt_inst/ciphertext[33]_i_1/O
+                         net (fo=4, routed)           0.668    10.423    craft_encrypt_inst/add_key[33]
+    SLICE_X10Y131        LUT6 (Prop_lut6_I2_O)        0.124    10.547 r  craft_encrypt_inst/state[19]_i_1/O
+                         net (fo=1, routed)           0.000    10.547    craft_encrypt_inst/p_1_in[19]
+    SLICE_X10Y131        FDRE                                         r  craft_encrypt_inst/state_reg[19]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -379,31 +395,31 @@ Slack (MET) :             8.772ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           1.920    13.331    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.764    15.186    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDSE                                         r  craft_round_constants_isnt/a_reg[0]/C
-                         clock pessimism              0.309    15.496    
-                         clock uncertainty           -0.035    15.460    
-    SLICE_X1Y155         FDSE (Setup_fdse_C_D)       -0.067    15.393    craft_round_constants_isnt/a_reg[0]
+                         net (fo=152, routed)         1.501    14.923    craft_encrypt_inst/clk
+    SLICE_X10Y131        FDRE                                         r  craft_encrypt_inst/state_reg[19]/C
+                         clock pessimism              0.259    15.182    
+                         clock uncertainty           -0.035    15.147    
+    SLICE_X10Y131        FDRE (Setup_fdre_C_D)        0.079    15.226    craft_encrypt_inst/state_reg[19]
   -------------------------------------------------------------------
-                         required time                         15.393    
-                         arrival time                          -6.621    
+                         required time                         15.226    
+                         arrival time                         -10.547    
   -------------------------------------------------------------------
-                         slack                                  8.772    
+                         slack                                  4.679    
 
-Slack (MET) :             8.902ns  (required time - arrival time)
-  Source:                 craft_round_constants_isnt/a_reg[3]/C
+Slack (MET) :             4.883ns  (required time - arrival time)
+  Source:                 craft_encrypt_inst/r_reg[1]/C
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            craft_round_constants_isnt/a_reg[2]/D
+  Destination:            craft_encrypt_inst/state_reg[18]/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.980ns  (logic 0.456ns (46.538%)  route 0.524ns (53.462%))
-  Logic Levels:           0  
-  Clock Path Skew:        -0.022ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.186ns = ( 15.186 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.496ns
-    Clock Pessimism Removal (CPR):    0.287ns
+  Data Path Delay:        5.037ns  (logic 0.890ns (17.670%)  route 4.147ns (82.330%))
+  Logic Levels:           3  (LUT3=1 LUT6=2)
+  Clock Path Skew:        -0.126ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.923ns = ( 14.923 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.308ns
+    Clock Pessimism Removal (CPR):    0.259ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -419,12 +435,18 @@ Slack (MET) :             8.902ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           2.025     3.506    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.893     5.496    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/C
+                         net (fo=152, routed)         1.706     5.308    craft_encrypt_inst/clk
+    SLICE_X6Y139         FDRE                                         r  craft_encrypt_inst/r_reg[1]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X0Y155         FDRE (Prop_fdre_C_Q)         0.456     5.952 r  craft_round_constants_isnt/a_reg[3]/Q
-                         net (fo=1, routed)           0.524     6.476    craft_round_constants_isnt/rc[7]
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[2]/D
+    SLICE_X6Y139         FDRE (Prop_fdre_C_Q)         0.518     5.826 r  craft_encrypt_inst/r_reg[1]/Q
+                         net (fo=71, routed)          3.041     8.868    craft_encrypt_inst/r_reg_n_0_[1]
+    SLICE_X11Y131        LUT6 (Prop_lut6_I1_O)        0.124     8.992 r  craft_encrypt_inst/ciphertext[33]_i_2/O
+                         net (fo=1, routed)           0.640     9.631    craft_encrypt_inst/tk[33]
+    SLICE_X11Y131        LUT3 (Prop_lut3_I0_O)        0.124     9.755 r  craft_encrypt_inst/ciphertext[33]_i_1/O
+                         net (fo=4, routed)           0.466    10.221    craft_encrypt_inst/add_key[33]
+    SLICE_X10Y131        LUT6 (Prop_lut6_I1_O)        0.124    10.345 r  craft_encrypt_inst/state[18]_i_1/O
+                         net (fo=1, routed)           0.000    10.345    craft_encrypt_inst/p_1_in[18]
+    SLICE_X10Y131        FDRE                                         r  craft_encrypt_inst/state_reg[18]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -434,31 +456,31 @@ Slack (MET) :             8.902ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           1.920    13.331    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.764    15.186    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[2]/C
-                         clock pessimism              0.287    15.474    
-                         clock uncertainty           -0.035    15.438    
-    SLICE_X1Y155         FDRE (Setup_fdre_C_D)       -0.061    15.377    craft_round_constants_isnt/a_reg[2]
+                         net (fo=152, routed)         1.501    14.923    craft_encrypt_inst/clk
+    SLICE_X10Y131        FDRE                                         r  craft_encrypt_inst/state_reg[18]/C
+                         clock pessimism              0.259    15.182    
+                         clock uncertainty           -0.035    15.147    
+    SLICE_X10Y131        FDRE (Setup_fdre_C_D)        0.081    15.228    craft_encrypt_inst/state_reg[18]
   -------------------------------------------------------------------
-                         required time                         15.377    
-                         arrival time                          -6.476    
+                         required time                         15.228    
+                         arrival time                         -10.345    
   -------------------------------------------------------------------
-                         slack                                  8.902    
+                         slack                                  4.883    
 
-Slack (MET) :             8.934ns  (required time - arrival time)
-  Source:                 craft_round_constants_isnt/a_reg[1]/C
+Slack (MET) :             4.890ns  (required time - arrival time)
+  Source:                 craft_encrypt_inst/r_reg[1]/C
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            craft_round_constants_isnt/a_reg[3]/D
+  Destination:            craft_encrypt_inst/state_reg[16]/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        1.038ns  (logic 0.580ns (55.892%)  route 0.458ns (44.108%))
-  Logic Levels:           1  (LUT2=1)
-  Clock Path Skew:        -0.022ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.186ns = ( 15.186 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.496ns
-    Clock Pessimism Removal (CPR):    0.287ns
+  Data Path Delay:        5.026ns  (logic 0.890ns (17.709%)  route 4.136ns (82.291%))
+  Logic Levels:           3  (LUT3=1 LUT6=2)
+  Clock Path Skew:        -0.126ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.923ns = ( 14.923 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.308ns
+    Clock Pessimism Removal (CPR):    0.259ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -474,14 +496,18 @@ Slack (MET) :             8.934ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           2.025     3.506    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.893     5.496    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[1]/C
+                         net (fo=152, routed)         1.706     5.308    craft_encrypt_inst/clk
+    SLICE_X6Y139         FDRE                                         r  craft_encrypt_inst/r_reg[1]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y155         FDRE (Prop_fdre_C_Q)         0.456     5.952 r  craft_round_constants_isnt/a_reg[1]/Q
-                         net (fo=2, routed)           0.458     6.409    craft_round_constants_isnt/rc[5]
-    SLICE_X0Y155         LUT2 (Prop_lut2_I1_O)        0.124     6.533 r  craft_round_constants_isnt/a[3]_i_1/O
-                         net (fo=1, routed)           0.000     6.533    craft_round_constants_isnt/a[3]_i_1_n_0
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/D
+    SLICE_X6Y139         FDRE (Prop_fdre_C_Q)         0.518     5.826 r  craft_encrypt_inst/r_reg[1]/Q
+                         net (fo=71, routed)          3.041     8.868    craft_encrypt_inst/r_reg_n_0_[1]
+    SLICE_X11Y131        LUT6 (Prop_lut6_I1_O)        0.124     8.992 r  craft_encrypt_inst/ciphertext[33]_i_2/O
+                         net (fo=1, routed)           0.640     9.631    craft_encrypt_inst/tk[33]
+    SLICE_X11Y131        LUT3 (Prop_lut3_I0_O)        0.124     9.755 r  craft_encrypt_inst/ciphertext[33]_i_1/O
+                         net (fo=4, routed)           0.455    10.210    craft_encrypt_inst/add_key[33]
+    SLICE_X10Y131        LUT6 (Prop_lut6_I3_O)        0.124    10.334 r  craft_encrypt_inst/state[16]_i_1/O
+                         net (fo=1, routed)           0.000    10.334    craft_encrypt_inst/p_1_in[16]
+    SLICE_X10Y131        FDRE                                         r  craft_encrypt_inst/state_reg[16]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -491,31 +517,31 @@ Slack (MET) :             8.934ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           1.920    13.331    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.764    15.186    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/C
-                         clock pessimism              0.287    15.474    
-                         clock uncertainty           -0.035    15.438    
-    SLICE_X0Y155         FDRE (Setup_fdre_C_D)        0.029    15.467    craft_round_constants_isnt/a_reg[3]
+                         net (fo=152, routed)         1.501    14.923    craft_encrypt_inst/clk
+    SLICE_X10Y131        FDRE                                         r  craft_encrypt_inst/state_reg[16]/C
+                         clock pessimism              0.259    15.182    
+                         clock uncertainty           -0.035    15.147    
+    SLICE_X10Y131        FDRE (Setup_fdre_C_D)        0.077    15.224    craft_encrypt_inst/state_reg[16]
   -------------------------------------------------------------------
-                         required time                         15.467    
-                         arrival time                          -6.533    
+                         required time                         15.224    
+                         arrival time                         -10.334    
   -------------------------------------------------------------------
-                         slack                                  8.934    
+                         slack                                  4.890    
 
-Slack (MET) :             8.966ns  (required time - arrival time)
-  Source:                 craft_round_constants_isnt/b_reg[1]/C
+Slack (MET) :             4.955ns  (required time - arrival time)
+  Source:                 craft_encrypt_inst/r_reg[1]/C
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            craft_round_constants_isnt/b_reg[0]/D
-                            (rising edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            craft_encrypt_inst/ciphertext_reg[33]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.780ns  (logic 0.419ns (53.738%)  route 0.361ns (46.262%))
-  Logic Levels:           0  
-  Clock Path Skew:        0.000ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.186ns = ( 15.186 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.496ns
-    Clock Pessimism Removal (CPR):    0.309ns
+  Data Path Delay:        4.817ns  (logic 0.766ns (15.903%)  route 4.051ns (84.097%))
+  Logic Levels:           2  (LUT3=1 LUT6=1)
+  Clock Path Skew:        -0.126ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.923ns = ( 14.923 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.308ns
+    Clock Pessimism Removal (CPR):    0.259ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -531,12 +557,16 @@ Slack (MET) :             8.966ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           2.025     3.506    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.893     5.496    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/C
+                         net (fo=152, routed)         1.706     5.308    craft_encrypt_inst/clk
+    SLICE_X6Y139         FDRE                                         r  craft_encrypt_inst/r_reg[1]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X0Y155         FDRE (Prop_fdre_C_Q)         0.419     5.915 r  craft_round_constants_isnt/b_reg[1]/Q
-                         net (fo=2, routed)           0.361     6.275    craft_round_constants_isnt/rc[1]
-    SLICE_X0Y155         FDSE                                         r  craft_round_constants_isnt/b_reg[0]/D
+    SLICE_X6Y139         FDRE (Prop_fdre_C_Q)         0.518     5.826 r  craft_encrypt_inst/r_reg[1]/Q
+                         net (fo=71, routed)          3.041     8.868    craft_encrypt_inst/r_reg_n_0_[1]
+    SLICE_X11Y131        LUT6 (Prop_lut6_I1_O)        0.124     8.992 r  craft_encrypt_inst/ciphertext[33]_i_2/O
+                         net (fo=1, routed)           0.640     9.631    craft_encrypt_inst/tk[33]
+    SLICE_X11Y131        LUT3 (Prop_lut3_I0_O)        0.124     9.755 r  craft_encrypt_inst/ciphertext[33]_i_1/O
+                         net (fo=4, routed)           0.370    10.125    craft_encrypt_inst/add_key[33]
+    SLICE_X11Y131        FDRE                                         r  craft_encrypt_inst/ciphertext_reg[33]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -546,31 +576,31 @@ Slack (MET) :             8.966ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           1.920    13.331    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.764    15.186    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDSE                                         r  craft_round_constants_isnt/b_reg[0]/C
-                         clock pessimism              0.309    15.496    
-                         clock uncertainty           -0.035    15.460    
-    SLICE_X0Y155         FDSE (Setup_fdse_C_D)       -0.219    15.241    craft_round_constants_isnt/b_reg[0]
+                         net (fo=152, routed)         1.501    14.923    craft_encrypt_inst/clk
+    SLICE_X11Y131        FDRE                                         r  craft_encrypt_inst/ciphertext_reg[33]/C
+                         clock pessimism              0.259    15.182    
+                         clock uncertainty           -0.035    15.147    
+    SLICE_X11Y131        FDRE (Setup_fdre_C_D)       -0.067    15.080    craft_encrypt_inst/ciphertext_reg[33]
   -------------------------------------------------------------------
-                         required time                         15.241    
-                         arrival time                          -6.275    
+                         required time                         15.080    
+                         arrival time                         -10.125    
   -------------------------------------------------------------------
-                         slack                                  8.966    
+                         slack                                  4.955    
 
-Slack (MET) :             9.255ns  (required time - arrival time)
-  Source:                 craft_round_constants_isnt/b_reg[2]/C
+Slack (MET) :             4.985ns  (required time - arrival time)
+  Source:                 craft_encrypt_inst/r_reg[1]/C
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            craft_round_constants_isnt/b_reg[1]/D
+  Destination:            craft_encrypt_inst/state_reg[33]/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.648ns  (logic 0.456ns (70.400%)  route 0.192ns (29.600%))
-  Logic Levels:           0  
-  Clock Path Skew:        0.000ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.186ns = ( 15.186 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.496ns
-    Clock Pessimism Removal (CPR):    0.309ns
+  Data Path Delay:        4.932ns  (logic 0.890ns (18.045%)  route 4.042ns (81.955%))
+  Logic Levels:           3  (LUT2=1 LUT5=1 LUT6=1)
+  Clock Path Skew:        -0.126ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.923ns = ( 14.923 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.308ns
+    Clock Pessimism Removal (CPR):    0.259ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -586,12 +616,18 @@ Slack (MET) :             9.255ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           2.025     3.506    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.893     5.496    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/C
+                         net (fo=152, routed)         1.706     5.308    craft_encrypt_inst/clk
+    SLICE_X6Y139         FDRE                                         r  craft_encrypt_inst/r_reg[1]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X0Y155         FDRE (Prop_fdre_C_Q)         0.456     5.952 r  craft_round_constants_isnt/b_reg[2]/Q
-                         net (fo=1, routed)           0.192     6.143    craft_round_constants_isnt/rc[2]
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/D
+    SLICE_X6Y139         FDRE (Prop_fdre_C_Q)         0.518     5.826 r  craft_encrypt_inst/r_reg[1]/Q
+                         net (fo=71, routed)          2.906     8.732    craft_encrypt_inst/r_reg_n_0_[1]
+    SLICE_X10Y130        LUT6 (Prop_lut6_I1_O)        0.124     8.856 r  craft_encrypt_inst/ciphertext[19]_i_2/O
+                         net (fo=1, routed)           0.286     9.143    craft_encrypt_inst/tk[19]
+    SLICE_X10Y130        LUT2 (Prop_lut2_I0_O)        0.124     9.267 f  craft_encrypt_inst/ciphertext[19]_i_1/O
+                         net (fo=5, routed)           0.850    10.116    craft_encrypt_inst/add_key[19]
+    SLICE_X10Y131        LUT5 (Prop_lut5_I0_O)        0.124    10.240 r  craft_encrypt_inst/state[33]_i_1/O
+                         net (fo=1, routed)           0.000    10.240    craft_encrypt_inst/p_1_in[33]
+    SLICE_X10Y131        FDRE                                         r  craft_encrypt_inst/state_reg[33]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -601,16 +637,199 @@ Slack (MET) :             9.255ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           1.920    13.331    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.764    15.186    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/C
-                         clock pessimism              0.309    15.496    
-                         clock uncertainty           -0.035    15.460    
-    SLICE_X0Y155         FDRE (Setup_fdre_C_D)       -0.062    15.398    craft_round_constants_isnt/b_reg[1]
+                         net (fo=152, routed)         1.501    14.923    craft_encrypt_inst/clk
+    SLICE_X10Y131        FDRE                                         r  craft_encrypt_inst/state_reg[33]/C
+                         clock pessimism              0.259    15.182    
+                         clock uncertainty           -0.035    15.147    
+    SLICE_X10Y131        FDRE (Setup_fdre_C_D)        0.079    15.226    craft_encrypt_inst/state_reg[33]
   -------------------------------------------------------------------
-                         required time                         15.398    
-                         arrival time                          -6.143    
+                         required time                         15.226    
+                         arrival time                         -10.240    
   -------------------------------------------------------------------
-                         slack                                  9.255    
+                         slack                                  4.985    
+
+Slack (MET) :             5.009ns  (required time - arrival time)
+  Source:                 craft_encrypt_inst/r_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            craft_encrypt_inst/state_reg[32]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        4.913ns  (logic 0.890ns (18.115%)  route 4.023ns (81.885%))
+  Logic Levels:           3  (LUT2=1 LUT6=2)
+  Clock Path Skew:        -0.124ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.925ns = ( 14.925 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.308ns
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           2.025     3.506    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         1.706     5.308    craft_encrypt_inst/clk
+    SLICE_X6Y139         FDRE                                         r  craft_encrypt_inst/r_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X6Y139         FDRE (Prop_fdre_C_Q)         0.518     5.826 r  craft_encrypt_inst/r_reg[1]/Q
+                         net (fo=71, routed)          2.906     8.732    craft_encrypt_inst/r_reg_n_0_[1]
+    SLICE_X10Y130        LUT6 (Prop_lut6_I1_O)        0.124     8.856 r  craft_encrypt_inst/ciphertext[19]_i_2/O
+                         net (fo=1, routed)           0.286     9.143    craft_encrypt_inst/tk[19]
+    SLICE_X10Y130        LUT2 (Prop_lut2_I0_O)        0.124     9.267 r  craft_encrypt_inst/ciphertext[19]_i_1/O
+                         net (fo=5, routed)           0.831    10.097    craft_encrypt_inst/add_key[19]
+    SLICE_X10Y132        LUT6 (Prop_lut6_I0_O)        0.124    10.221 r  craft_encrypt_inst/state[32]_i_1/O
+                         net (fo=1, routed)           0.000    10.221    craft_encrypt_inst/p_1_in[32]
+    SLICE_X10Y132        FDRE                                         r  craft_encrypt_inst/state_reg[32]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    E3                                                0.000    10.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000    10.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           1.920    13.331    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         1.503    14.925    craft_encrypt_inst/clk
+    SLICE_X10Y132        FDRE                                         r  craft_encrypt_inst/state_reg[32]/C
+                         clock pessimism              0.259    15.184    
+                         clock uncertainty           -0.035    15.149    
+    SLICE_X10Y132        FDRE (Setup_fdre_C_D)        0.081    15.230    craft_encrypt_inst/state_reg[32]
+  -------------------------------------------------------------------
+                         required time                         15.230    
+                         arrival time                         -10.221    
+  -------------------------------------------------------------------
+                         slack                                  5.009    
+
+Slack (MET) :             5.204ns  (required time - arrival time)
+  Source:                 craft_encrypt_inst/r_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            craft_encrypt_inst/state_reg[40]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        4.668ns  (logic 0.890ns (19.065%)  route 3.778ns (80.935%))
+  Logic Levels:           3  (LUT2=1 LUT6=2)
+  Clock Path Skew:        -0.123ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.926ns = ( 14.926 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.308ns
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           2.025     3.506    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         1.706     5.308    craft_encrypt_inst/clk
+    SLICE_X6Y139         FDRE                                         r  craft_encrypt_inst/r_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X6Y139         FDRE (Prop_fdre_C_Q)         0.518     5.826 f  craft_encrypt_inst/r_reg[1]/Q
+                         net (fo=71, routed)          2.426     8.253    craft_encrypt_inst/r_reg_n_0_[1]
+    SLICE_X11Y136        LUT6 (Prop_lut6_I1_O)        0.124     8.377 r  craft_encrypt_inst/ciphertext[24]_i_2/O
+                         net (fo=1, routed)           0.657     9.034    craft_encrypt_inst/tk[24]
+    SLICE_X9Y136         LUT2 (Prop_lut2_I0_O)        0.124     9.158 r  craft_encrypt_inst/ciphertext[24]_i_1/O
+                         net (fo=5, routed)           0.695     9.853    craft_encrypt_inst/add_key[24]
+    SLICE_X9Y137         LUT6 (Prop_lut6_I1_O)        0.124     9.977 r  craft_encrypt_inst/state[40]_i_1/O
+                         net (fo=1, routed)           0.000     9.977    craft_encrypt_inst/p_1_in[40]
+    SLICE_X9Y137         FDRE                                         r  craft_encrypt_inst/state_reg[40]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    E3                                                0.000    10.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000    10.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           1.920    13.331    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         1.504    14.926    craft_encrypt_inst/clk
+    SLICE_X9Y137         FDRE                                         r  craft_encrypt_inst/state_reg[40]/C
+                         clock pessimism              0.259    15.185    
+                         clock uncertainty           -0.035    15.150    
+    SLICE_X9Y137         FDRE (Setup_fdre_C_D)        0.031    15.181    craft_encrypt_inst/state_reg[40]
+  -------------------------------------------------------------------
+                         required time                         15.181    
+                         arrival time                          -9.977    
+  -------------------------------------------------------------------
+                         slack                                  5.204    
+
+Slack (MET) :             5.245ns  (required time - arrival time)
+  Source:                 craft_encrypt_inst/r_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            craft_encrypt_inst/state_reg[41]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        4.677ns  (logic 0.890ns (19.031%)  route 3.787ns (80.969%))
+  Logic Levels:           3  (LUT2=1 LUT5=1 LUT6=1)
+  Clock Path Skew:        -0.120ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.929ns = ( 14.929 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.308ns
+    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           2.025     3.506    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         1.706     5.308    craft_encrypt_inst/clk
+    SLICE_X6Y139         FDRE                                         r  craft_encrypt_inst/r_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X6Y139         FDRE (Prop_fdre_C_Q)         0.518     5.826 f  craft_encrypt_inst/r_reg[1]/Q
+                         net (fo=71, routed)          2.426     8.253    craft_encrypt_inst/r_reg_n_0_[1]
+    SLICE_X11Y136        LUT6 (Prop_lut6_I1_O)        0.124     8.377 r  craft_encrypt_inst/ciphertext[24]_i_2/O
+                         net (fo=1, routed)           0.657     9.034    craft_encrypt_inst/tk[24]
+    SLICE_X9Y136         LUT2 (Prop_lut2_I0_O)        0.124     9.158 r  craft_encrypt_inst/ciphertext[24]_i_1/O
+                         net (fo=5, routed)           0.703     9.861    craft_encrypt_inst/add_key[24]
+    SLICE_X10Y137        LUT5 (Prop_lut5_I2_O)        0.124     9.985 r  craft_encrypt_inst/state[41]_i_1/O
+                         net (fo=1, routed)           0.000     9.985    craft_encrypt_inst/p_1_in[41]
+    SLICE_X10Y137        FDRE                                         r  craft_encrypt_inst/state_reg[41]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  
+    E3                                                0.000    10.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000    10.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           1.920    13.331    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         1.507    14.929    craft_encrypt_inst/clk
+    SLICE_X10Y137        FDRE                                         r  craft_encrypt_inst/state_reg[41]/C
+                         clock pessimism              0.259    15.188    
+                         clock uncertainty           -0.035    15.153    
+    SLICE_X10Y137        FDRE (Setup_fdre_C_D)        0.077    15.230    craft_encrypt_inst/state_reg[41]
+  -------------------------------------------------------------------
+                         required time                         15.230    
+                         arrival time                          -9.985    
+  -------------------------------------------------------------------
+                         slack                                  5.245    
 
 
 
@@ -629,9 +848,9 @@ Slack (MET) :             0.128ns  (arrival time - required time)
   Data Path Delay:        0.199ns  (logic 0.141ns (70.953%)  route 0.058ns (29.047%))
   Logic Levels:           0  
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.122ns
-    Source Clock Delay      (SCD):    1.600ns
-    Clock Pessimism Removal (CPR):    0.522ns
+    Destination Clock Delay (DCD):    2.033ns
+    Source Clock Delay      (SCD):    1.516ns
+    Clock Pessimism Removal (CPR):    0.516ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -642,12 +861,12 @@ Slack (MET) :             0.128ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.644     0.894    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.680     1.600    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/C
+                         net (fo=152, routed)         0.597     1.516    craft_round_constants_isnt/clk
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X0Y155         FDRE (Prop_fdre_C_Q)         0.141     1.741 r  craft_round_constants_isnt/b_reg[2]/Q
-                         net (fo=1, routed)           0.058     1.799    craft_round_constants_isnt/rc[2]
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/D
+    SLICE_X4Y145         FDRE (Prop_fdre_C_Q)         0.141     1.657 r  craft_round_constants_isnt/b_reg[2]/Q
+                         net (fo=1, routed)           0.058     1.715    craft_round_constants_isnt/rc[2]
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -657,13 +876,13 @@ Slack (MET) :             0.128ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.957     2.122    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/C
-                         clock pessimism             -0.522     1.600    
-    SLICE_X0Y155         FDRE (Hold_fdre_C_D)         0.071     1.671    craft_round_constants_isnt/b_reg[1]
+                         net (fo=152, routed)         0.867     2.033    craft_round_constants_isnt/clk
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/C
+                         clock pessimism             -0.516     1.516    
+    SLICE_X4Y145         FDRE (Hold_fdre_C_D)         0.071     1.587    craft_round_constants_isnt/b_reg[1]
   -------------------------------------------------------------------
-                         required time                         -1.671    
-                         arrival time                           1.799    
+                         required time                         -1.587    
+                         arrival time                           1.715    
   -------------------------------------------------------------------
                          slack                                  0.128    
 
@@ -678,9 +897,9 @@ Slack (MET) :             0.179ns  (arrival time - required time)
   Data Path Delay:        0.283ns  (logic 0.186ns (65.755%)  route 0.097ns (34.245%))
   Logic Levels:           1  (LUT2=1)
   Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.122ns
-    Source Clock Delay      (SCD):    1.600ns
-    Clock Pessimism Removal (CPR):    0.509ns
+    Destination Clock Delay (DCD):    2.033ns
+    Source Clock Delay      (SCD):    1.516ns
+    Clock Pessimism Removal (CPR):    0.503ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -691,14 +910,14 @@ Slack (MET) :             0.179ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.644     0.894    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.680     1.600    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDSE                                         r  craft_round_constants_isnt/a_reg[0]/C
+                         net (fo=152, routed)         0.597     1.516    craft_round_constants_isnt/clk
+    SLICE_X5Y145         FDSE                                         r  craft_round_constants_isnt/a_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y155         FDSE (Prop_fdse_C_Q)         0.141     1.741 r  craft_round_constants_isnt/a_reg[0]/Q
-                         net (fo=1, routed)           0.097     1.838    craft_round_constants_isnt/rc[4]
-    SLICE_X0Y155         LUT2 (Prop_lut2_I0_O)        0.045     1.883 r  craft_round_constants_isnt/a[3]_i_1/O
-                         net (fo=1, routed)           0.000     1.883    craft_round_constants_isnt/a[3]_i_1_n_0
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/D
+    SLICE_X5Y145         FDSE (Prop_fdse_C_Q)         0.141     1.657 r  craft_round_constants_isnt/a_reg[0]/Q
+                         net (fo=1, routed)           0.097     1.754    craft_round_constants_isnt/rc[4]
+    SLICE_X4Y145         LUT2 (Prop_lut2_I0_O)        0.045     1.799 r  craft_round_constants_isnt/a[3]_i_1/O
+                         net (fo=1, routed)           0.000     1.799    craft_round_constants_isnt/a[3]_i_1_n_0
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -708,13 +927,13 @@ Slack (MET) :             0.179ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.957     2.122    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/C
-                         clock pessimism             -0.509     1.613    
-    SLICE_X0Y155         FDRE (Hold_fdre_C_D)         0.091     1.704    craft_round_constants_isnt/a_reg[3]
+                         net (fo=152, routed)         0.867     2.033    craft_round_constants_isnt/clk
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/C
+                         clock pessimism             -0.503     1.529    
+    SLICE_X4Y145         FDRE (Hold_fdre_C_D)         0.091     1.620    craft_round_constants_isnt/a_reg[3]
   -------------------------------------------------------------------
-                         required time                         -1.704    
-                         arrival time                           1.883    
+                         required time                         -1.620    
+                         arrival time                           1.799    
   -------------------------------------------------------------------
                          slack                                  0.179    
 
@@ -729,9 +948,9 @@ Slack (MET) :             0.196ns  (arrival time - required time)
   Data Path Delay:        0.288ns  (logic 0.227ns (78.877%)  route 0.061ns (21.123%))
   Logic Levels:           1  (LUT2=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.122ns
-    Source Clock Delay      (SCD):    1.600ns
-    Clock Pessimism Removal (CPR):    0.522ns
+    Destination Clock Delay (DCD):    2.033ns
+    Source Clock Delay      (SCD):    1.516ns
+    Clock Pessimism Removal (CPR):    0.516ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -742,14 +961,14 @@ Slack (MET) :             0.196ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.644     0.894    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.680     1.600    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDSE                                         r  craft_round_constants_isnt/b_reg[0]/C
+                         net (fo=152, routed)         0.597     1.516    craft_round_constants_isnt/clk
+    SLICE_X4Y145         FDSE                                         r  craft_round_constants_isnt/b_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X0Y155         FDSE (Prop_fdse_C_Q)         0.128     1.728 r  craft_round_constants_isnt/b_reg[0]/Q
-                         net (fo=1, routed)           0.061     1.789    craft_round_constants_isnt/rc[0]
-    SLICE_X0Y155         LUT2 (Prop_lut2_I0_O)        0.099     1.888 r  craft_round_constants_isnt/b[2]_i_1/O
-                         net (fo=1, routed)           0.000     1.888    craft_round_constants_isnt/p_0_out[2]
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/D
+    SLICE_X4Y145         FDSE (Prop_fdse_C_Q)         0.128     1.644 r  craft_round_constants_isnt/b_reg[0]/Q
+                         net (fo=1, routed)           0.061     1.705    craft_round_constants_isnt/rc[0]
+    SLICE_X4Y145         LUT2 (Prop_lut2_I0_O)        0.099     1.804 r  craft_round_constants_isnt/b[2]_i_1/O
+                         net (fo=1, routed)           0.000     1.804    craft_round_constants_isnt/p_0_out[2]
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -759,15 +978,66 @@ Slack (MET) :             0.196ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.957     2.122    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/C
-                         clock pessimism             -0.522     1.600    
-    SLICE_X0Y155         FDRE (Hold_fdre_C_D)         0.092     1.692    craft_round_constants_isnt/b_reg[2]
+                         net (fo=152, routed)         0.867     2.033    craft_round_constants_isnt/clk
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/C
+                         clock pessimism             -0.516     1.516    
+    SLICE_X4Y145         FDRE (Hold_fdre_C_D)         0.092     1.608    craft_round_constants_isnt/b_reg[2]
   -------------------------------------------------------------------
-                         required time                         -1.692    
-                         arrival time                           1.888    
+                         required time                         -1.608    
+                         arrival time                           1.804    
   -------------------------------------------------------------------
                          slack                                  0.196    
+
+Slack (MET) :             0.210ns  (arrival time - required time)
+  Source:                 craft_encrypt_inst/r_reg[6]/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            craft_encrypt_inst/done_reg/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        0.314ns  (logic 0.209ns (66.488%)  route 0.105ns (33.512%))
+  Logic Levels:           1  (LUT3=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.032ns
+    Source Clock Delay      (SCD):    1.515ns
+    Clock Pessimism Removal (CPR):    0.503ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           0.644     0.894    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         0.596     1.515    craft_encrypt_inst/clk
+    SLICE_X6Y140         FDRE                                         r  craft_encrypt_inst/r_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X6Y140         FDRE (Prop_fdre_C_Q)         0.164     1.679 r  craft_encrypt_inst/r_reg[6]/Q
+                         net (fo=4, routed)           0.105     1.785    craft_encrypt_inst/r_reg_n_0_[6]
+    SLICE_X7Y140         LUT3 (Prop_lut3_I0_O)        0.045     1.830 r  craft_encrypt_inst/done_i_1/O
+                         net (fo=1, routed)           0.000     1.830    craft_encrypt_inst/done_i_1_n_0
+    SLICE_X7Y140         FDRE                                         r  craft_encrypt_inst/done_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         0.866     2.032    craft_encrypt_inst/clk
+    SLICE_X7Y140         FDRE                                         r  craft_encrypt_inst/done_reg/C
+                         clock pessimism             -0.503     1.528    
+    SLICE_X7Y140         FDRE (Hold_fdre_C_D)         0.091     1.619    craft_encrypt_inst/done_reg
+  -------------------------------------------------------------------
+                         required time                         -1.619    
+                         arrival time                           1.830    
+  -------------------------------------------------------------------
+                         slack                                  0.210    
 
 Slack (MET) :             0.232ns  (arrival time - required time)
   Source:                 craft_round_constants_isnt/a_reg[3]/C
@@ -780,9 +1050,9 @@ Slack (MET) :             0.232ns  (arrival time - required time)
   Data Path Delay:        0.315ns  (logic 0.141ns (44.783%)  route 0.174ns (55.217%))
   Logic Levels:           0  
   Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.122ns
-    Source Clock Delay      (SCD):    1.600ns
-    Clock Pessimism Removal (CPR):    0.509ns
+    Destination Clock Delay (DCD):    2.033ns
+    Source Clock Delay      (SCD):    1.516ns
+    Clock Pessimism Removal (CPR):    0.503ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -793,12 +1063,12 @@ Slack (MET) :             0.232ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.644     0.894    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.680     1.600    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/C
+                         net (fo=152, routed)         0.597     1.516    craft_round_constants_isnt/clk
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X0Y155         FDRE (Prop_fdre_C_Q)         0.141     1.741 r  craft_round_constants_isnt/a_reg[3]/Q
-                         net (fo=1, routed)           0.174     1.915    craft_round_constants_isnt/rc[7]
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[2]/D
+    SLICE_X4Y145         FDRE (Prop_fdre_C_Q)         0.141     1.657 r  craft_round_constants_isnt/a_reg[3]/Q
+                         net (fo=1, routed)           0.174     1.831    craft_round_constants_isnt/rc[7]
+    SLICE_X5Y145         FDRE                                         r  craft_round_constants_isnt/a_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -808,13 +1078,13 @@ Slack (MET) :             0.232ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.957     2.122    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[2]/C
-                         clock pessimism             -0.509     1.613    
-    SLICE_X1Y155         FDRE (Hold_fdre_C_D)         0.070     1.683    craft_round_constants_isnt/a_reg[2]
+                         net (fo=152, routed)         0.867     2.033    craft_round_constants_isnt/clk
+    SLICE_X5Y145         FDRE                                         r  craft_round_constants_isnt/a_reg[2]/C
+                         clock pessimism             -0.503     1.529    
+    SLICE_X5Y145         FDRE (Hold_fdre_C_D)         0.070     1.599    craft_round_constants_isnt/a_reg[2]
   -------------------------------------------------------------------
-                         required time                         -1.683    
-                         arrival time                           1.915    
+                         required time                         -1.599    
+                         arrival time                           1.831    
   -------------------------------------------------------------------
                          slack                                  0.232    
 
@@ -829,9 +1099,9 @@ Slack (MET) :             0.247ns  (arrival time - required time)
   Data Path Delay:        0.269ns  (logic 0.128ns (47.636%)  route 0.141ns (52.364%))
   Logic Levels:           0  
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.122ns
-    Source Clock Delay      (SCD):    1.600ns
-    Clock Pessimism Removal (CPR):    0.522ns
+    Destination Clock Delay (DCD):    2.033ns
+    Source Clock Delay      (SCD):    1.516ns
+    Clock Pessimism Removal (CPR):    0.516ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -842,12 +1112,12 @@ Slack (MET) :             0.247ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.644     0.894    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.680     1.600    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/C
+                         net (fo=152, routed)         0.597     1.516    craft_round_constants_isnt/clk
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X0Y155         FDRE (Prop_fdre_C_Q)         0.128     1.728 r  craft_round_constants_isnt/b_reg[1]/Q
-                         net (fo=2, routed)           0.141     1.869    craft_round_constants_isnt/rc[1]
-    SLICE_X0Y155         FDSE                                         r  craft_round_constants_isnt/b_reg[0]/D
+    SLICE_X4Y145         FDRE (Prop_fdre_C_Q)         0.128     1.644 r  craft_round_constants_isnt/b_reg[1]/Q
+                         net (fo=2, routed)           0.141     1.785    craft_round_constants_isnt/rc[1]
+    SLICE_X4Y145         FDSE                                         r  craft_round_constants_isnt/b_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -857,17 +1127,68 @@ Slack (MET) :             0.247ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.957     2.122    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDSE                                         r  craft_round_constants_isnt/b_reg[0]/C
-                         clock pessimism             -0.522     1.600    
-    SLICE_X0Y155         FDSE (Hold_fdse_C_D)         0.022     1.622    craft_round_constants_isnt/b_reg[0]
+                         net (fo=152, routed)         0.867     2.033    craft_round_constants_isnt/clk
+    SLICE_X4Y145         FDSE                                         r  craft_round_constants_isnt/b_reg[0]/C
+                         clock pessimism             -0.516     1.516    
+    SLICE_X4Y145         FDSE (Hold_fdse_C_D)         0.022     1.538    craft_round_constants_isnt/b_reg[0]
   -------------------------------------------------------------------
-                         required time                         -1.622    
-                         arrival time                           1.869    
+                         required time                         -1.538    
+                         arrival time                           1.785    
   -------------------------------------------------------------------
                          slack                                  0.247    
 
-Slack (MET) :             0.409ns  (arrival time - required time)
+Slack (MET) :             0.247ns  (arrival time - required time)
+  Source:                 craft_encrypt_inst/state_reg[9]/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            craft_encrypt_inst/ciphertext_reg[9]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        0.385ns  (logic 0.188ns (48.847%)  route 0.197ns (51.153%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Path Skew:        0.015ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.028ns
+    Source Clock Delay      (SCD):    1.512ns
+    Clock Pessimism Removal (CPR):    0.500ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           0.644     0.894    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         0.593     1.512    craft_encrypt_inst/clk
+    SLICE_X4Y136         FDRE                                         r  craft_encrypt_inst/state_reg[9]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X4Y136         FDRE (Prop_fdre_C_Q)         0.141     1.653 r  craft_encrypt_inst/state_reg[9]/Q
+                         net (fo=3, routed)           0.197     1.850    craft_encrypt_inst/state[9]
+    SLICE_X6Y136         LUT2 (Prop_lut2_I1_O)        0.047     1.897 r  craft_encrypt_inst/ciphertext[9]_i_1/O
+                         net (fo=4, routed)           0.000     1.897    craft_encrypt_inst/add_key[9]
+    SLICE_X6Y136         FDRE                                         r  craft_encrypt_inst/ciphertext_reg[9]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         0.862     2.028    craft_encrypt_inst/clk
+    SLICE_X6Y136         FDRE                                         r  craft_encrypt_inst/ciphertext_reg[9]/C
+                         clock pessimism             -0.500     1.527    
+    SLICE_X6Y136         FDRE (Hold_fdre_C_D)         0.123     1.650    craft_encrypt_inst/ciphertext_reg[9]
+  -------------------------------------------------------------------
+                         required time                         -1.650    
+                         arrival time                           1.897    
+  -------------------------------------------------------------------
+                         slack                                  0.247    
+
+Slack (MET) :             0.259ns  (arrival time - required time)
   Source:                 craft_round_constants_isnt/a_reg[1]/C
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            craft_round_constants_isnt/a_reg[0]/D
@@ -875,12 +1196,12 @@ Slack (MET) :             0.409ns  (arrival time - required time)
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.479ns  (logic 0.141ns (29.460%)  route 0.338ns (70.540%))
+  Data Path Delay:        0.329ns  (logic 0.141ns (42.917%)  route 0.188ns (57.083%))
   Logic Levels:           0  
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.122ns
-    Source Clock Delay      (SCD):    1.600ns
-    Clock Pessimism Removal (CPR):    0.522ns
+    Destination Clock Delay (DCD):    2.033ns
+    Source Clock Delay      (SCD):    1.516ns
+    Clock Pessimism Removal (CPR):    0.516ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -891,12 +1212,12 @@ Slack (MET) :             0.409ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.644     0.894    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.680     1.600    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[1]/C
+                         net (fo=152, routed)         0.597     1.516    craft_round_constants_isnt/clk
+    SLICE_X5Y145         FDRE                                         r  craft_round_constants_isnt/a_reg[1]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y155         FDRE (Prop_fdre_C_Q)         0.141     1.741 r  craft_round_constants_isnt/a_reg[1]/Q
-                         net (fo=2, routed)           0.338     2.078    craft_round_constants_isnt/rc[5]
-    SLICE_X1Y155         FDSE                                         r  craft_round_constants_isnt/a_reg[0]/D
+    SLICE_X5Y145         FDRE (Prop_fdre_C_Q)         0.141     1.657 r  craft_round_constants_isnt/a_reg[1]/Q
+                         net (fo=2, routed)           0.188     1.845    craft_round_constants_isnt/rc[5]
+    SLICE_X5Y145         FDSE                                         r  craft_round_constants_isnt/a_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -906,30 +1227,30 @@ Slack (MET) :             0.409ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.957     2.122    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDSE                                         r  craft_round_constants_isnt/a_reg[0]/C
-                         clock pessimism             -0.522     1.600    
-    SLICE_X1Y155         FDSE (Hold_fdse_C_D)         0.070     1.670    craft_round_constants_isnt/a_reg[0]
+                         net (fo=152, routed)         0.867     2.033    craft_round_constants_isnt/clk
+    SLICE_X5Y145         FDSE                                         r  craft_round_constants_isnt/a_reg[0]/C
+                         clock pessimism             -0.516     1.516    
+    SLICE_X5Y145         FDSE (Hold_fdse_C_D)         0.070     1.586    craft_round_constants_isnt/a_reg[0]
   -------------------------------------------------------------------
-                         required time                         -1.670    
-                         arrival time                           2.078    
+                         required time                         -1.586    
+                         arrival time                           1.845    
   -------------------------------------------------------------------
-                         slack                                  0.409    
+                         slack                                  0.259    
 
-Slack (MET) :             0.440ns  (arrival time - required time)
-  Source:                 craft_round_constants_isnt/a_reg[2]/C
+Slack (MET) :             0.260ns  (arrival time - required time)
+  Source:                 craft_encrypt_inst/r_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            craft_round_constants_isnt/a_reg[1]/D
+  Destination:            craft_encrypt_inst/r_reg[5]/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.506ns  (logic 0.141ns (27.846%)  route 0.365ns (72.154%))
-  Logic Levels:           0  
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.122ns
-    Source Clock Delay      (SCD):    1.600ns
-    Clock Pessimism Removal (CPR):    0.522ns
+  Data Path Delay:        0.398ns  (logic 0.209ns (52.511%)  route 0.189ns (47.489%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.017ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.032ns
+    Source Clock Delay      (SCD):    1.514ns
+    Clock Pessimism Removal (CPR):    0.500ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -940,12 +1261,14 @@ Slack (MET) :             0.440ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.644     0.894    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.680     1.600    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[2]/C
+                         net (fo=152, routed)         0.595     1.514    craft_encrypt_inst/clk
+    SLICE_X6Y139         FDRE                                         r  craft_encrypt_inst/r_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y155         FDRE (Prop_fdre_C_Q)         0.141     1.741 r  craft_round_constants_isnt/a_reg[2]/Q
-                         net (fo=1, routed)           0.365     2.106    craft_round_constants_isnt/rc[6]
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[1]/D
+    SLICE_X6Y139         FDRE (Prop_fdre_C_Q)         0.164     1.678 r  craft_encrypt_inst/r_reg[0]/Q
+                         net (fo=72, routed)          0.189     1.867    craft_encrypt_inst/craft_key_schedule_inst_0/t_key00
+    SLICE_X6Y140         LUT6 (Prop_lut6_I2_O)        0.045     1.912 r  craft_encrypt_inst/r[5]_i_1/O
+                         net (fo=1, routed)           0.000     1.912    craft_encrypt_inst/p_0_in[5]
+    SLICE_X6Y140         FDRE                                         r  craft_encrypt_inst/r_reg[5]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -955,15 +1278,64 @@ Slack (MET) :             0.440ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.957     2.122    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[1]/C
-                         clock pessimism             -0.522     1.600    
-    SLICE_X1Y155         FDRE (Hold_fdre_C_D)         0.066     1.666    craft_round_constants_isnt/a_reg[1]
+                         net (fo=152, routed)         0.866     2.032    craft_encrypt_inst/clk
+    SLICE_X6Y140         FDRE                                         r  craft_encrypt_inst/r_reg[5]/C
+                         clock pessimism             -0.500     1.531    
+    SLICE_X6Y140         FDRE (Hold_fdre_C_D)         0.121     1.652    craft_encrypt_inst/r_reg[5]
   -------------------------------------------------------------------
-                         required time                         -1.666    
-                         arrival time                           2.106    
+                         required time                         -1.652    
+                         arrival time                           1.912    
   -------------------------------------------------------------------
-                         slack                                  0.440    
+                         slack                                  0.260    
+
+Slack (MET) :             0.262ns  (arrival time - required time)
+  Source:                 craft_encrypt_inst/craft_round_constants_inst_0/a_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            craft_encrypt_inst/craft_round_constants_inst_0/a_reg[2]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        0.332ns  (logic 0.141ns (42.411%)  route 0.191ns (57.589%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.031ns
+    Source Clock Delay      (SCD):    1.514ns
+    Clock Pessimism Removal (CPR):    0.516ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           0.644     0.894    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         0.595     1.514    craft_encrypt_inst/craft_round_constants_inst_0/clk
+    SLICE_X4Y138         FDRE                                         r  craft_encrypt_inst/craft_round_constants_inst_0/a_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X4Y138         FDRE (Prop_fdre_C_Q)         0.141     1.655 r  craft_encrypt_inst/craft_round_constants_inst_0/a_reg[3]/Q
+                         net (fo=2, routed)           0.191     1.847    craft_encrypt_inst/craft_round_constants_inst_0/rc[7]
+    SLICE_X4Y138         FDRE                                         r  craft_encrypt_inst/craft_round_constants_inst_0/a_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         0.866     2.031    craft_encrypt_inst/craft_round_constants_inst_0/clk
+    SLICE_X4Y138         FDRE                                         r  craft_encrypt_inst/craft_round_constants_inst_0/a_reg[2]/C
+                         clock pessimism             -0.516     1.514    
+    SLICE_X4Y138         FDRE (Hold_fdre_C_D)         0.070     1.584    craft_encrypt_inst/craft_round_constants_inst_0/a_reg[2]
+  -------------------------------------------------------------------
+                         required time                         -1.584    
+                         arrival time                           1.847    
+  -------------------------------------------------------------------
+                         slack                                  0.262    
 
 
 
@@ -978,34 +1350,35 @@ Sources:            { CLK100MHZ }
 
 Check Type        Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
 Min Period        n/a     BUFG/I   n/a            2.155         10.000      7.845      BUFGCTRL_X0Y16  CLK100MHZ_IBUF_BUFG_inst/I
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X2Y113    flag_reg/C
-Min Period        n/a     FDSE/C   n/a            1.000         10.000      9.000      SLICE_X1Y155    craft_round_constants_isnt/a_reg[0]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X1Y155    craft_round_constants_isnt/a_reg[1]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X1Y155    craft_round_constants_isnt/a_reg[2]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X0Y155    craft_round_constants_isnt/a_reg[3]/C
-Min Period        n/a     FDSE/C   n/a            1.000         10.000      9.000      SLICE_X0Y155    craft_round_constants_isnt/b_reg[0]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X0Y155    craft_round_constants_isnt/b_reg[1]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X0Y155    craft_round_constants_isnt/b_reg[2]/C
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X2Y113    flag_reg/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X2Y113    flag_reg/C
-Low Pulse Width   Slow    FDSE/C   n/a            0.500         5.000       4.500      SLICE_X1Y155    craft_round_constants_isnt/a_reg[0]/C
-Low Pulse Width   Fast    FDSE/C   n/a            0.500         5.000       4.500      SLICE_X1Y155    craft_round_constants_isnt/a_reg[0]/C
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X1Y155    craft_round_constants_isnt/a_reg[1]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X1Y155    craft_round_constants_isnt/a_reg[1]/C
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X1Y155    craft_round_constants_isnt/a_reg[2]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X1Y155    craft_round_constants_isnt/a_reg[2]/C
-Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y155    craft_round_constants_isnt/a_reg[3]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y155    craft_round_constants_isnt/a_reg[3]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X2Y113    flag_reg/C
-High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X2Y113    flag_reg/C
-High Pulse Width  Slow    FDSE/C   n/a            0.500         5.000       4.500      SLICE_X1Y155    craft_round_constants_isnt/a_reg[0]/C
-High Pulse Width  Fast    FDSE/C   n/a            0.500         5.000       4.500      SLICE_X1Y155    craft_round_constants_isnt/a_reg[0]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X1Y155    craft_round_constants_isnt/a_reg[1]/C
-High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X1Y155    craft_round_constants_isnt/a_reg[1]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X1Y155    craft_round_constants_isnt/a_reg[2]/C
-High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X1Y155    craft_round_constants_isnt/a_reg[2]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y155    craft_round_constants_isnt/a_reg[3]/C
-High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X0Y155    craft_round_constants_isnt/a_reg[3]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X4Y117    flag_reg/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X8Y131    craft_encrypt_inst/ciphertext_reg[0]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X6Y134    craft_encrypt_inst/ciphertext_reg[10]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X4Y134    craft_encrypt_inst/ciphertext_reg[11]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X7Y135    craft_encrypt_inst/ciphertext_reg[12]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X6Y134    craft_encrypt_inst/ciphertext_reg[13]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X7Y134    craft_encrypt_inst/ciphertext_reg[14]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X8Y136    craft_encrypt_inst/ciphertext_reg[15]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X9Y131    craft_encrypt_inst/ciphertext_reg[16]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X4Y117    flag_reg/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X4Y117    flag_reg/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X8Y131    craft_encrypt_inst/ciphertext_reg[0]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X8Y131    craft_encrypt_inst/ciphertext_reg[0]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X6Y134    craft_encrypt_inst/ciphertext_reg[10]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X6Y134    craft_encrypt_inst/ciphertext_reg[10]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X4Y134    craft_encrypt_inst/ciphertext_reg[11]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X4Y134    craft_encrypt_inst/ciphertext_reg[11]/C
+Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X7Y135    craft_encrypt_inst/ciphertext_reg[12]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X7Y135    craft_encrypt_inst/ciphertext_reg[12]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X4Y117    flag_reg/C
+High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X4Y117    flag_reg/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X8Y131    craft_encrypt_inst/ciphertext_reg[0]/C
+High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X8Y131    craft_encrypt_inst/ciphertext_reg[0]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X6Y134    craft_encrypt_inst/ciphertext_reg[10]/C
+High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X6Y134    craft_encrypt_inst/ciphertext_reg[10]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X4Y134    craft_encrypt_inst/ciphertext_reg[11]/C
+High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X4Y134    craft_encrypt_inst/ciphertext_reg[11]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X7Y135    craft_encrypt_inst/ciphertext_reg[12]/C
+High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X7Y135    craft_encrypt_inst/ciphertext_reg[12]/C
 
 
 
@@ -1028,7 +1401,7 @@ Slack:                    inf
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        5.715ns  (logic 4.038ns (70.658%)  route 1.677ns (29.342%))
+  Data Path Delay:        5.855ns  (logic 3.976ns (67.911%)  route 1.879ns (32.089%))
   Logic Levels:           1  (OBUF=1)
   Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.050ns
@@ -1045,13 +1418,13 @@ Slack:                    inf
     E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           2.025     3.506    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.704     5.306    CLK100MHZ_IBUF_BUFG
-    SLICE_X2Y113         FDRE                                         r  flag_reg/C
+                         net (fo=152, routed)         1.699     5.301    CLK100MHZ_IBUF_BUFG
+    SLICE_X4Y117         FDRE                                         r  flag_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X2Y113         FDRE (Prop_fdre_C_Q)         0.518     5.824 r  flag_reg/Q
-                         net (fo=1, routed)           1.677     7.501    LED_OBUF
-    H17                  OBUF (Prop_obuf_I_O)         3.520    11.022 r  LED_OBUF_inst/O
-                         net (fo=0)                   0.000    11.022    LED
+    SLICE_X4Y117         FDRE (Prop_fdre_C_Q)         0.456     5.757 r  flag_reg/Q
+                         net (fo=1, routed)           1.879     7.636    LED_OBUF
+    H17                  OBUF (Prop_obuf_I_O)         3.520    11.157 r  LED_OBUF_inst/O
+                         net (fo=0)                   0.000    11.157    LED
     H17                                                               r  LED (OUT)
   -------------------------------------------------------------------    -------------------
 
@@ -1068,7 +1441,7 @@ Slack:                    inf
                             (output port)
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        1.711ns  (logic 1.385ns (80.951%)  route 0.326ns (19.049%))
+  Data Path Delay:        1.777ns  (logic 1.362ns (76.654%)  route 0.415ns (23.346%))
   Logic Levels:           1  (OBUF=1)
   Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.050ns
@@ -1085,13 +1458,13 @@ Slack:                    inf
     E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.644     0.894    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.594     1.513    CLK100MHZ_IBUF_BUFG
-    SLICE_X2Y113         FDRE                                         r  flag_reg/C
+                         net (fo=152, routed)         0.591     1.510    CLK100MHZ_IBUF_BUFG
+    SLICE_X4Y117         FDRE                                         r  flag_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X2Y113         FDRE (Prop_fdre_C_Q)         0.164     1.677 r  flag_reg/Q
-                         net (fo=1, routed)           0.326     2.003    LED_OBUF
-    H17                  OBUF (Prop_obuf_I_O)         1.221     3.225 r  LED_OBUF_inst/O
-                         net (fo=0)                   0.000     3.225    LED
+    SLICE_X4Y117         FDRE (Prop_fdre_C_Q)         0.141     1.651 r  flag_reg/Q
+                         net (fo=1, routed)           0.415     2.066    LED_OBUF
+    H17                  OBUF (Prop_obuf_I_O)         1.221     3.288 r  LED_OBUF_inst/O
+                         net (fo=0)                   0.000     3.288    LED
     H17                                                               r  LED (OUT)
   -------------------------------------------------------------------    -------------------
 
@@ -1104,8 +1477,8 @@ Path Group:  (none)
 From Clock:  
   To Clock:  sys_clk_pin
 
-Max Delay             7 Endpoints
-Min Delay             7 Endpoints
+Max Delay           150 Endpoints
+Min Delay           150 Endpoints
 --------------------------------------------------------------------------------------
 
 
@@ -1114,14 +1487,14 @@ Max Delay Paths
 Slack:                    inf
   Source:                 CPU_RESETN
                             (input port)
-  Destination:            craft_round_constants_isnt/a_reg[3]/R
+  Destination:            craft_encrypt_inst/state_reg[36]/CE
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
   Path Type:              Setup (Max at Slow Process Corner)
-  Data Path Delay:        2.954ns  (logic 1.507ns (51.012%)  route 1.447ns (48.988%))
-  Logic Levels:           1  (IBUF=1)
-  Clock Path Skew:        5.186ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.186ns
+  Data Path Delay:        5.248ns  (logic 1.631ns (31.078%)  route 3.617ns (68.922%))
+  Logic Levels:           2  (IBUF=1 LUT2=1)
+  Clock Path Skew:        5.005ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.005ns
     Source Clock Delay      (SCD):    0.000ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -1132,11 +1505,13 @@ Slack:                    inf
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    C12                                               0.000     0.000 r  CPU_RESETN (IN)
+    C12                                               0.000     0.000 f  CPU_RESETN (IN)
                          net (fo=0)                   0.000     0.000    CPU_RESETN
-    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 r  CPU_RESETN_IBUF_inst/O
-                         net (fo=7, routed)           1.447     2.954    craft_round_constants_isnt/rst
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/R
+    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 f  CPU_RESETN_IBUF_inst/O
+                         net (fo=73, routed)          1.651     3.158    craft_encrypt_inst/rst_n
+    SLICE_X7Y139         LUT2 (Prop_lut2_I0_O)        0.124     3.282 r  craft_encrypt_inst/state[63]_i_1/O
+                         net (fo=64, routed)          1.966     5.248    craft_encrypt_inst/state[63]_i_1_n_0
+    SLICE_X3Y134         FDRE                                         r  craft_encrypt_inst/state_reg[36]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1146,58 +1521,20 @@ Slack:                    inf
     E3                   IBUF (Prop_ibuf_I_O)         1.411     1.411 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           1.920     3.331    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.422 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.764     5.186    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/C
+                         net (fo=152, routed)         1.583     5.005    craft_encrypt_inst/clk
+    SLICE_X3Y134         FDRE                                         r  craft_encrypt_inst/state_reg[36]/C
 
 Slack:                    inf
   Source:                 CPU_RESETN
                             (input port)
-  Destination:            craft_round_constants_isnt/b_reg[0]/S
-                            (rising edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             (none)
-  Path Type:              Setup (Max at Slow Process Corner)
-  Data Path Delay:        2.954ns  (logic 1.507ns (51.012%)  route 1.447ns (48.988%))
-  Logic Levels:           1  (IBUF=1)
-  Clock Path Skew:        5.186ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.186ns
-    Source Clock Delay      (SCD):    0.000ns
-    Clock Pessimism Removal (CPR):    0.000ns
-  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.050ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    C12                                               0.000     0.000 r  CPU_RESETN (IN)
-                         net (fo=0)                   0.000     0.000    CPU_RESETN
-    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 r  CPU_RESETN_IBUF_inst/O
-                         net (fo=7, routed)           1.447     2.954    craft_round_constants_isnt/rst
-    SLICE_X0Y155         FDSE                                         r  craft_round_constants_isnt/b_reg[0]/S
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  CLK100MHZ (IN)
-                         net (fo=0)                   0.000     0.000    CLK100MHZ
-    E3                   IBUF (Prop_ibuf_I_O)         1.411     1.411 r  CLK100MHZ_IBUF_inst/O
-                         net (fo=1, routed)           1.920     3.331    CLK100MHZ_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.422 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.764     5.186    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDSE                                         r  craft_round_constants_isnt/b_reg[0]/C
-
-Slack:                    inf
-  Source:                 CPU_RESETN
-                            (input port)
-  Destination:            craft_round_constants_isnt/b_reg[1]/R
+  Destination:            craft_encrypt_inst/state_reg[38]/CE
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
   Path Type:              Setup (Max at Slow Process Corner)
-  Data Path Delay:        2.954ns  (logic 1.507ns (51.012%)  route 1.447ns (48.988%))
-  Logic Levels:           1  (IBUF=1)
-  Clock Path Skew:        5.186ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.186ns
+  Data Path Delay:        5.059ns  (logic 1.631ns (32.241%)  route 3.428ns (67.759%))
+  Logic Levels:           2  (IBUF=1 LUT2=1)
+  Clock Path Skew:        5.005ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.005ns
     Source Clock Delay      (SCD):    0.000ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -1208,11 +1545,13 @@ Slack:                    inf
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    C12                                               0.000     0.000 r  CPU_RESETN (IN)
+    C12                                               0.000     0.000 f  CPU_RESETN (IN)
                          net (fo=0)                   0.000     0.000    CPU_RESETN
-    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 r  CPU_RESETN_IBUF_inst/O
-                         net (fo=7, routed)           1.447     2.954    craft_round_constants_isnt/rst
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/R
+    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 f  CPU_RESETN_IBUF_inst/O
+                         net (fo=73, routed)          1.651     3.158    craft_encrypt_inst/rst_n
+    SLICE_X7Y139         LUT2 (Prop_lut2_I0_O)        0.124     3.282 r  craft_encrypt_inst/state[63]_i_1/O
+                         net (fo=64, routed)          1.777     5.059    craft_encrypt_inst/state[63]_i_1_n_0
+    SLICE_X2Y134         FDRE                                         r  craft_encrypt_inst/state_reg[38]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1222,20 +1561,20 @@ Slack:                    inf
     E3                   IBUF (Prop_ibuf_I_O)         1.411     1.411 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           1.920     3.331    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.422 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.764     5.186    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/C
+                         net (fo=152, routed)         1.583     5.005    craft_encrypt_inst/clk
+    SLICE_X2Y134         FDRE                                         r  craft_encrypt_inst/state_reg[38]/C
 
 Slack:                    inf
   Source:                 CPU_RESETN
                             (input port)
-  Destination:            craft_round_constants_isnt/b_reg[2]/R
+  Destination:            craft_encrypt_inst/state_reg[39]/CE
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
   Path Type:              Setup (Max at Slow Process Corner)
-  Data Path Delay:        2.954ns  (logic 1.507ns (51.012%)  route 1.447ns (48.988%))
-  Logic Levels:           1  (IBUF=1)
-  Clock Path Skew:        5.186ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.186ns
+  Data Path Delay:        5.059ns  (logic 1.631ns (32.241%)  route 3.428ns (67.759%))
+  Logic Levels:           2  (IBUF=1 LUT2=1)
+  Clock Path Skew:        5.005ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.005ns
     Source Clock Delay      (SCD):    0.000ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -1246,11 +1585,13 @@ Slack:                    inf
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    C12                                               0.000     0.000 r  CPU_RESETN (IN)
+    C12                                               0.000     0.000 f  CPU_RESETN (IN)
                          net (fo=0)                   0.000     0.000    CPU_RESETN
-    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 r  CPU_RESETN_IBUF_inst/O
-                         net (fo=7, routed)           1.447     2.954    craft_round_constants_isnt/rst
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/R
+    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 f  CPU_RESETN_IBUF_inst/O
+                         net (fo=73, routed)          1.651     3.158    craft_encrypt_inst/rst_n
+    SLICE_X7Y139         LUT2 (Prop_lut2_I0_O)        0.124     3.282 r  craft_encrypt_inst/state[63]_i_1/O
+                         net (fo=64, routed)          1.777     5.059    craft_encrypt_inst/state[63]_i_1_n_0
+    SLICE_X2Y134         FDRE                                         r  craft_encrypt_inst/state_reg[39]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1260,58 +1601,20 @@ Slack:                    inf
     E3                   IBUF (Prop_ibuf_I_O)         1.411     1.411 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           1.920     3.331    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.422 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.764     5.186    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/C
+                         net (fo=152, routed)         1.583     5.005    craft_encrypt_inst/clk
+    SLICE_X2Y134         FDRE                                         r  craft_encrypt_inst/state_reg[39]/C
 
 Slack:                    inf
   Source:                 CPU_RESETN
                             (input port)
-  Destination:            craft_round_constants_isnt/a_reg[0]/S
-                            (rising edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             (none)
-  Path Type:              Setup (Max at Slow Process Corner)
-  Data Path Delay:        2.950ns  (logic 1.507ns (51.087%)  route 1.443ns (48.913%))
-  Logic Levels:           1  (IBUF=1)
-  Clock Path Skew:        5.186ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.186ns
-    Source Clock Delay      (SCD):    0.000ns
-    Clock Pessimism Removal (CPR):    0.000ns
-  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.050ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    C12                                               0.000     0.000 r  CPU_RESETN (IN)
-                         net (fo=0)                   0.000     0.000    CPU_RESETN
-    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 r  CPU_RESETN_IBUF_inst/O
-                         net (fo=7, routed)           1.443     2.950    craft_round_constants_isnt/rst
-    SLICE_X1Y155         FDSE                                         r  craft_round_constants_isnt/a_reg[0]/S
-  -------------------------------------------------------------------    -------------------
-
-                         (clock sys_clk_pin rise edge)
-                                                      0.000     0.000 r  
-    E3                                                0.000     0.000 r  CLK100MHZ (IN)
-                         net (fo=0)                   0.000     0.000    CLK100MHZ
-    E3                   IBUF (Prop_ibuf_I_O)         1.411     1.411 r  CLK100MHZ_IBUF_inst/O
-                         net (fo=1, routed)           1.920     3.331    CLK100MHZ_IBUF
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.422 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.764     5.186    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDSE                                         r  craft_round_constants_isnt/a_reg[0]/C
-
-Slack:                    inf
-  Source:                 CPU_RESETN
-                            (input port)
-  Destination:            craft_round_constants_isnt/a_reg[1]/R
+  Destination:            craft_encrypt_inst/state_reg[27]/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
   Path Type:              Setup (Max at Slow Process Corner)
-  Data Path Delay:        2.950ns  (logic 1.507ns (51.087%)  route 1.443ns (48.913%))
-  Logic Levels:           1  (IBUF=1)
-  Clock Path Skew:        5.186ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.186ns
+  Data Path Delay:        5.021ns  (logic 1.631ns (32.487%)  route 3.390ns (67.513%))
+  Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        4.925ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.925ns
     Source Clock Delay      (SCD):    0.000ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -1322,11 +1625,13 @@ Slack:                    inf
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    C12                                               0.000     0.000 r  CPU_RESETN (IN)
+    C12                                               0.000     0.000 f  CPU_RESETN (IN)
                          net (fo=0)                   0.000     0.000    CPU_RESETN
-    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 r  CPU_RESETN_IBUF_inst/O
-                         net (fo=7, routed)           1.443     2.950    craft_round_constants_isnt/rst
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[1]/R
+    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 f  CPU_RESETN_IBUF_inst/O
+                         net (fo=73, routed)          3.390     4.897    craft_encrypt_inst/craft_round_constants_inst_0/rst_n
+    SLICE_X9Y136         LUT6 (Prop_lut6_I4_O)        0.124     5.021 r  craft_encrypt_inst/craft_round_constants_inst_0/state[27]_i_1/O
+                         net (fo=1, routed)           0.000     5.021    craft_encrypt_inst/p_1_in[27]
+    SLICE_X9Y136         FDRE                                         r  craft_encrypt_inst/state_reg[27]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1336,20 +1641,20 @@ Slack:                    inf
     E3                   IBUF (Prop_ibuf_I_O)         1.411     1.411 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           1.920     3.331    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.422 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.764     5.186    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[1]/C
+                         net (fo=152, routed)         1.503     4.925    craft_encrypt_inst/clk
+    SLICE_X9Y136         FDRE                                         r  craft_encrypt_inst/state_reg[27]/C
 
 Slack:                    inf
   Source:                 CPU_RESETN
                             (input port)
-  Destination:            craft_round_constants_isnt/a_reg[2]/R
+  Destination:            craft_encrypt_inst/state_reg[18]/D
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
   Path Type:              Setup (Max at Slow Process Corner)
-  Data Path Delay:        2.950ns  (logic 1.507ns (51.087%)  route 1.443ns (48.913%))
-  Logic Levels:           1  (IBUF=1)
-  Clock Path Skew:        5.186ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.186ns
+  Data Path Delay:        4.982ns  (logic 1.631ns (32.739%)  route 3.351ns (67.261%))
+  Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        4.923ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.923ns
     Source Clock Delay      (SCD):    0.000ns
     Clock Pessimism Removal (CPR):    0.000ns
   Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -1363,8 +1668,10 @@ Slack:                    inf
     C12                                               0.000     0.000 r  CPU_RESETN (IN)
                          net (fo=0)                   0.000     0.000    CPU_RESETN
     C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 r  CPU_RESETN_IBUF_inst/O
-                         net (fo=7, routed)           1.443     2.950    craft_round_constants_isnt/rst
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[2]/R
+                         net (fo=73, routed)          3.351     4.858    craft_encrypt_inst/rst_n
+    SLICE_X10Y131        LUT6 (Prop_lut6_I4_O)        0.124     4.982 r  craft_encrypt_inst/state[18]_i_1/O
+                         net (fo=1, routed)           0.000     4.982    craft_encrypt_inst/p_1_in[18]
+    SLICE_X10Y131        FDRE                                         r  craft_encrypt_inst/state_reg[18]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1374,8 +1681,208 @@ Slack:                    inf
     E3                   IBUF (Prop_ibuf_I_O)         1.411     1.411 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           1.920     3.331    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.422 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           1.764     5.186    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[2]/C
+                         net (fo=152, routed)         1.501     4.923    craft_encrypt_inst/clk
+    SLICE_X10Y131        FDRE                                         r  craft_encrypt_inst/state_reg[18]/C
+
+Slack:                    inf
+  Source:                 CPU_RESETN
+                            (input port)
+  Destination:            craft_encrypt_inst/state_reg[20]/CE
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Setup (Max at Slow Process Corner)
+  Data Path Delay:        4.958ns  (logic 1.631ns (32.894%)  route 3.327ns (67.106%))
+  Logic Levels:           2  (IBUF=1 LUT2=1)
+  Clock Path Skew:        5.006ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.006ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    C12                                               0.000     0.000 f  CPU_RESETN (IN)
+                         net (fo=0)                   0.000     0.000    CPU_RESETN
+    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 f  CPU_RESETN_IBUF_inst/O
+                         net (fo=73, routed)          1.651     3.158    craft_encrypt_inst/rst_n
+    SLICE_X7Y139         LUT2 (Prop_lut2_I0_O)        0.124     3.282 r  craft_encrypt_inst/state[63]_i_1/O
+                         net (fo=64, routed)          1.676     4.958    craft_encrypt_inst/state[63]_i_1_n_0
+    SLICE_X3Y136         FDRE                                         r  craft_encrypt_inst/state_reg[20]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         1.411     1.411 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           1.920     3.331    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.422 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         1.584     5.006    craft_encrypt_inst/clk
+    SLICE_X3Y136         FDRE                                         r  craft_encrypt_inst/state_reg[20]/C
+
+Slack:                    inf
+  Source:                 CPU_RESETN
+                            (input port)
+  Destination:            craft_encrypt_inst/state_reg[4]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Setup (Max at Slow Process Corner)
+  Data Path Delay:        4.882ns  (logic 1.631ns (33.409%)  route 3.251ns (66.591%))
+  Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        4.922ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.922ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    C12                                               0.000     0.000 f  CPU_RESETN (IN)
+                         net (fo=0)                   0.000     0.000    CPU_RESETN
+    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 f  CPU_RESETN_IBUF_inst/O
+                         net (fo=73, routed)          3.251     4.758    craft_encrypt_inst/rst_n
+    SLICE_X8Y132         LUT6 (Prop_lut6_I4_O)        0.124     4.882 r  craft_encrypt_inst/state[4]_i_1/O
+                         net (fo=1, routed)           0.000     4.882    craft_encrypt_inst/p_1_in[4]
+    SLICE_X8Y132         FDRE                                         r  craft_encrypt_inst/state_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         1.411     1.411 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           1.920     3.331    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.422 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         1.500     4.922    craft_encrypt_inst/clk
+    SLICE_X8Y132         FDRE                                         r  craft_encrypt_inst/state_reg[4]/C
+
+Slack:                    inf
+  Source:                 CPU_RESETN
+                            (input port)
+  Destination:            craft_encrypt_inst/state_reg[16]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Setup (Max at Slow Process Corner)
+  Data Path Delay:        4.850ns  (logic 1.631ns (33.630%)  route 3.219ns (66.370%))
+  Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        4.923ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.923ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    C12                                               0.000     0.000 r  CPU_RESETN (IN)
+                         net (fo=0)                   0.000     0.000    CPU_RESETN
+    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 r  CPU_RESETN_IBUF_inst/O
+                         net (fo=73, routed)          3.219     4.726    craft_encrypt_inst/rst_n
+    SLICE_X10Y131        LUT6 (Prop_lut6_I4_O)        0.124     4.850 r  craft_encrypt_inst/state[16]_i_1/O
+                         net (fo=1, routed)           0.000     4.850    craft_encrypt_inst/p_1_in[16]
+    SLICE_X10Y131        FDRE                                         r  craft_encrypt_inst/state_reg[16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         1.411     1.411 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           1.920     3.331    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.422 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         1.501     4.923    craft_encrypt_inst/clk
+    SLICE_X10Y131        FDRE                                         r  craft_encrypt_inst/state_reg[16]/C
+
+Slack:                    inf
+  Source:                 CPU_RESETN
+                            (input port)
+  Destination:            craft_encrypt_inst/state_reg[24]/CE
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Setup (Max at Slow Process Corner)
+  Data Path Delay:        4.844ns  (logic 1.631ns (33.668%)  route 3.213ns (66.332%))
+  Logic Levels:           2  (IBUF=1 LUT2=1)
+  Clock Path Skew:        4.925ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.925ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    C12                                               0.000     0.000 f  CPU_RESETN (IN)
+                         net (fo=0)                   0.000     0.000    CPU_RESETN
+    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 f  CPU_RESETN_IBUF_inst/O
+                         net (fo=73, routed)          1.651     3.158    craft_encrypt_inst/rst_n
+    SLICE_X7Y139         LUT2 (Prop_lut2_I0_O)        0.124     3.282 r  craft_encrypt_inst/state[63]_i_1/O
+                         net (fo=64, routed)          1.562     4.844    craft_encrypt_inst/state[63]_i_1_n_0
+    SLICE_X9Y136         FDRE                                         r  craft_encrypt_inst/state_reg[24]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         1.411     1.411 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           1.920     3.331    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.422 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         1.503     4.925    craft_encrypt_inst/clk
+    SLICE_X9Y136         FDRE                                         r  craft_encrypt_inst/state_reg[24]/C
+
+Slack:                    inf
+  Source:                 CPU_RESETN
+                            (input port)
+  Destination:            craft_encrypt_inst/state_reg[25]/CE
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Setup (Max at Slow Process Corner)
+  Data Path Delay:        4.844ns  (logic 1.631ns (33.668%)  route 3.213ns (66.332%))
+  Logic Levels:           2  (IBUF=1 LUT2=1)
+  Clock Path Skew:        4.925ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.925ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    C12                                               0.000     0.000 f  CPU_RESETN (IN)
+                         net (fo=0)                   0.000     0.000    CPU_RESETN
+    C12                  IBUF (Prop_ibuf_I_O)         1.507     1.507 f  CPU_RESETN_IBUF_inst/O
+                         net (fo=73, routed)          1.651     3.158    craft_encrypt_inst/rst_n
+    SLICE_X7Y139         LUT2 (Prop_lut2_I0_O)        0.124     3.282 r  craft_encrypt_inst/state[63]_i_1/O
+                         net (fo=64, routed)          1.562     4.844    craft_encrypt_inst/state[63]_i_1_n_0
+    SLICE_X9Y136         FDRE                                         r  craft_encrypt_inst/state_reg[25]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         1.411     1.411 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           1.920     3.331    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.422 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         1.503     4.925    craft_encrypt_inst/clk
+    SLICE_X9Y136         FDRE                                         r  craft_encrypt_inst/state_reg[25]/C
 
 
 
@@ -1390,10 +1897,10 @@ Slack:                    inf
                             (rising edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
-  Data Path Delay:        0.855ns  (logic 0.275ns (32.098%)  route 0.581ns (67.902%))
+  Data Path Delay:        0.759ns  (logic 0.275ns (36.176%)  route 0.484ns (63.824%))
   Logic Levels:           1  (IBUF=1)
-  Clock Path Skew:        2.122ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.122ns
+  Clock Path Skew:        2.033ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.033ns
     Source Clock Delay      (SCD):    0.000ns
     Clock Pessimism Removal (CPR):    -0.000ns
 
@@ -1402,8 +1909,8 @@ Slack:                    inf
     C12                                               0.000     0.000 r  CPU_RESETN (IN)
                          net (fo=0)                   0.000     0.000    CPU_RESETN
     C12                  IBUF (Prop_ibuf_I_O)         0.275     0.275 r  CPU_RESETN_IBUF_inst/O
-                         net (fo=7, routed)           0.581     0.855    craft_round_constants_isnt/rst
-    SLICE_X1Y155         FDSE                                         r  craft_round_constants_isnt/a_reg[0]/S
+                         net (fo=73, routed)          0.484     0.759    craft_round_constants_isnt/rst
+    SLICE_X5Y145         FDSE                                         r  craft_round_constants_isnt/a_reg[0]/S
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1413,8 +1920,8 @@ Slack:                    inf
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.957     2.122    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDSE                                         r  craft_round_constants_isnt/a_reg[0]/C
+                         net (fo=152, routed)         0.867     2.033    craft_round_constants_isnt/clk
+    SLICE_X5Y145         FDSE                                         r  craft_round_constants_isnt/a_reg[0]/C
 
 Slack:                    inf
   Source:                 CPU_RESETN
@@ -1423,10 +1930,10 @@ Slack:                    inf
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
-  Data Path Delay:        0.855ns  (logic 0.275ns (32.098%)  route 0.581ns (67.902%))
+  Data Path Delay:        0.759ns  (logic 0.275ns (36.176%)  route 0.484ns (63.824%))
   Logic Levels:           1  (IBUF=1)
-  Clock Path Skew:        2.122ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.122ns
+  Clock Path Skew:        2.033ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.033ns
     Source Clock Delay      (SCD):    0.000ns
     Clock Pessimism Removal (CPR):    -0.000ns
 
@@ -1435,8 +1942,8 @@ Slack:                    inf
     C12                                               0.000     0.000 r  CPU_RESETN (IN)
                          net (fo=0)                   0.000     0.000    CPU_RESETN
     C12                  IBUF (Prop_ibuf_I_O)         0.275     0.275 r  CPU_RESETN_IBUF_inst/O
-                         net (fo=7, routed)           0.581     0.855    craft_round_constants_isnt/rst
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[1]/R
+                         net (fo=73, routed)          0.484     0.759    craft_round_constants_isnt/rst
+    SLICE_X5Y145         FDRE                                         r  craft_round_constants_isnt/a_reg[1]/R
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1446,8 +1953,8 @@ Slack:                    inf
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.957     2.122    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[1]/C
+                         net (fo=152, routed)         0.867     2.033    craft_round_constants_isnt/clk
+    SLICE_X5Y145         FDRE                                         r  craft_round_constants_isnt/a_reg[1]/C
 
 Slack:                    inf
   Source:                 CPU_RESETN
@@ -1456,10 +1963,10 @@ Slack:                    inf
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
-  Data Path Delay:        0.855ns  (logic 0.275ns (32.098%)  route 0.581ns (67.902%))
+  Data Path Delay:        0.759ns  (logic 0.275ns (36.176%)  route 0.484ns (63.824%))
   Logic Levels:           1  (IBUF=1)
-  Clock Path Skew:        2.122ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.122ns
+  Clock Path Skew:        2.033ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.033ns
     Source Clock Delay      (SCD):    0.000ns
     Clock Pessimism Removal (CPR):    -0.000ns
 
@@ -1468,8 +1975,8 @@ Slack:                    inf
     C12                                               0.000     0.000 r  CPU_RESETN (IN)
                          net (fo=0)                   0.000     0.000    CPU_RESETN
     C12                  IBUF (Prop_ibuf_I_O)         0.275     0.275 r  CPU_RESETN_IBUF_inst/O
-                         net (fo=7, routed)           0.581     0.855    craft_round_constants_isnt/rst
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[2]/R
+                         net (fo=73, routed)          0.484     0.759    craft_round_constants_isnt/rst
+    SLICE_X5Y145         FDRE                                         r  craft_round_constants_isnt/a_reg[2]/R
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1479,8 +1986,8 @@ Slack:                    inf
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.957     2.122    craft_round_constants_isnt/clk
-    SLICE_X1Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[2]/C
+                         net (fo=152, routed)         0.867     2.033    craft_round_constants_isnt/clk
+    SLICE_X5Y145         FDRE                                         r  craft_round_constants_isnt/a_reg[2]/C
 
 Slack:                    inf
   Source:                 CPU_RESETN
@@ -1489,10 +1996,10 @@ Slack:                    inf
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
-  Data Path Delay:        0.860ns  (logic 0.275ns (31.935%)  route 0.585ns (68.065%))
+  Data Path Delay:        0.763ns  (logic 0.275ns (35.970%)  route 0.489ns (64.030%))
   Logic Levels:           1  (IBUF=1)
-  Clock Path Skew:        2.122ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.122ns
+  Clock Path Skew:        2.033ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.033ns
     Source Clock Delay      (SCD):    0.000ns
     Clock Pessimism Removal (CPR):    -0.000ns
 
@@ -1501,8 +2008,8 @@ Slack:                    inf
     C12                                               0.000     0.000 r  CPU_RESETN (IN)
                          net (fo=0)                   0.000     0.000    CPU_RESETN
     C12                  IBUF (Prop_ibuf_I_O)         0.275     0.275 r  CPU_RESETN_IBUF_inst/O
-                         net (fo=7, routed)           0.585     0.860    craft_round_constants_isnt/rst
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/R
+                         net (fo=73, routed)          0.489     0.763    craft_round_constants_isnt/rst
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/R
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1512,8 +2019,8 @@ Slack:                    inf
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.957     2.122    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/C
+                         net (fo=152, routed)         0.867     2.033    craft_round_constants_isnt/clk
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/a_reg[3]/C
 
 Slack:                    inf
   Source:                 CPU_RESETN
@@ -1522,10 +2029,10 @@ Slack:                    inf
                             (rising edge-triggered cell FDSE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
-  Data Path Delay:        0.860ns  (logic 0.275ns (31.935%)  route 0.585ns (68.065%))
+  Data Path Delay:        0.763ns  (logic 0.275ns (35.970%)  route 0.489ns (64.030%))
   Logic Levels:           1  (IBUF=1)
-  Clock Path Skew:        2.122ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.122ns
+  Clock Path Skew:        2.033ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.033ns
     Source Clock Delay      (SCD):    0.000ns
     Clock Pessimism Removal (CPR):    -0.000ns
 
@@ -1534,8 +2041,8 @@ Slack:                    inf
     C12                                               0.000     0.000 r  CPU_RESETN (IN)
                          net (fo=0)                   0.000     0.000    CPU_RESETN
     C12                  IBUF (Prop_ibuf_I_O)         0.275     0.275 r  CPU_RESETN_IBUF_inst/O
-                         net (fo=7, routed)           0.585     0.860    craft_round_constants_isnt/rst
-    SLICE_X0Y155         FDSE                                         r  craft_round_constants_isnt/b_reg[0]/S
+                         net (fo=73, routed)          0.489     0.763    craft_round_constants_isnt/rst
+    SLICE_X4Y145         FDSE                                         r  craft_round_constants_isnt/b_reg[0]/S
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1545,8 +2052,8 @@ Slack:                    inf
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.957     2.122    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDSE                                         r  craft_round_constants_isnt/b_reg[0]/C
+                         net (fo=152, routed)         0.867     2.033    craft_round_constants_isnt/clk
+    SLICE_X4Y145         FDSE                                         r  craft_round_constants_isnt/b_reg[0]/C
 
 Slack:                    inf
   Source:                 CPU_RESETN
@@ -1555,10 +2062,10 @@ Slack:                    inf
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
-  Data Path Delay:        0.860ns  (logic 0.275ns (31.935%)  route 0.585ns (68.065%))
+  Data Path Delay:        0.763ns  (logic 0.275ns (35.970%)  route 0.489ns (64.030%))
   Logic Levels:           1  (IBUF=1)
-  Clock Path Skew:        2.122ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.122ns
+  Clock Path Skew:        2.033ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.033ns
     Source Clock Delay      (SCD):    0.000ns
     Clock Pessimism Removal (CPR):    -0.000ns
 
@@ -1567,8 +2074,8 @@ Slack:                    inf
     C12                                               0.000     0.000 r  CPU_RESETN (IN)
                          net (fo=0)                   0.000     0.000    CPU_RESETN
     C12                  IBUF (Prop_ibuf_I_O)         0.275     0.275 r  CPU_RESETN_IBUF_inst/O
-                         net (fo=7, routed)           0.585     0.860    craft_round_constants_isnt/rst
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/R
+                         net (fo=73, routed)          0.489     0.763    craft_round_constants_isnt/rst
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/R
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1578,8 +2085,8 @@ Slack:                    inf
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.957     2.122    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/C
+                         net (fo=152, routed)         0.867     2.033    craft_round_constants_isnt/clk
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/b_reg[1]/C
 
 Slack:                    inf
   Source:                 CPU_RESETN
@@ -1588,10 +2095,10 @@ Slack:                    inf
                             (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
   Path Type:              Hold (Min at Fast Process Corner)
-  Data Path Delay:        0.860ns  (logic 0.275ns (31.935%)  route 0.585ns (68.065%))
+  Data Path Delay:        0.763ns  (logic 0.275ns (35.970%)  route 0.489ns (64.030%))
   Logic Levels:           1  (IBUF=1)
-  Clock Path Skew:        2.122ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.122ns
+  Clock Path Skew:        2.033ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.033ns
     Source Clock Delay      (SCD):    0.000ns
     Clock Pessimism Removal (CPR):    -0.000ns
 
@@ -1600,8 +2107,8 @@ Slack:                    inf
     C12                                               0.000     0.000 r  CPU_RESETN (IN)
                          net (fo=0)                   0.000     0.000    CPU_RESETN
     C12                  IBUF (Prop_ibuf_I_O)         0.275     0.275 r  CPU_RESETN_IBUF_inst/O
-                         net (fo=7, routed)           0.585     0.860    craft_round_constants_isnt/rst
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/R
+                         net (fo=73, routed)          0.489     0.763    craft_round_constants_isnt/rst
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/R
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -1611,8 +2118,113 @@ Slack:                    inf
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=8, routed)           0.957     2.122    craft_round_constants_isnt/clk
-    SLICE_X0Y155         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/C
+                         net (fo=152, routed)         0.867     2.033    craft_round_constants_isnt/clk
+    SLICE_X4Y145         FDRE                                         r  craft_round_constants_isnt/b_reg[2]/C
+
+Slack:                    inf
+  Source:                 CPU_RESETN
+                            (input port)
+  Destination:            craft_encrypt_inst/state_reg[46]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Hold (Min at Fast Process Corner)
+  Data Path Delay:        1.026ns  (logic 0.320ns (31.142%)  route 0.707ns (68.858%))
+  Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        2.032ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.032ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    C12                                               0.000     0.000 f  CPU_RESETN (IN)
+                         net (fo=0)                   0.000     0.000    CPU_RESETN
+    C12                  IBUF (Prop_ibuf_I_O)         0.275     0.275 f  CPU_RESETN_IBUF_inst/O
+                         net (fo=73, routed)          0.707     0.981    craft_encrypt_inst/rst_n
+    SLICE_X3Y137         LUT6 (Prop_lut6_I4_O)        0.045     1.026 r  craft_encrypt_inst/state[46]_i_1/O
+                         net (fo=1, routed)           0.000     1.026    craft_encrypt_inst/p_1_in[46]
+    SLICE_X3Y137         FDRE                                         r  craft_encrypt_inst/state_reg[46]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         0.867     2.032    craft_encrypt_inst/clk
+    SLICE_X3Y137         FDRE                                         r  craft_encrypt_inst/state_reg[46]/C
+
+Slack:                    inf
+  Source:                 CPU_RESETN
+                            (input port)
+  Destination:            craft_encrypt_inst/state_reg[47]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Hold (Min at Fast Process Corner)
+  Data Path Delay:        1.026ns  (logic 0.320ns (31.142%)  route 0.707ns (68.858%))
+  Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        2.032ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.032ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    C12                                               0.000     0.000 f  CPU_RESETN (IN)
+                         net (fo=0)                   0.000     0.000    CPU_RESETN
+    C12                  IBUF (Prop_ibuf_I_O)         0.275     0.275 f  CPU_RESETN_IBUF_inst/O
+                         net (fo=73, routed)          0.707     0.981    craft_encrypt_inst/rst_n
+    SLICE_X3Y137         LUT6 (Prop_lut6_I4_O)        0.045     1.026 r  craft_encrypt_inst/state[47]_i_1/O
+                         net (fo=1, routed)           0.000     1.026    craft_encrypt_inst/p_1_in[47]
+    SLICE_X3Y137         FDRE                                         r  craft_encrypt_inst/state_reg[47]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         0.867     2.032    craft_encrypt_inst/clk
+    SLICE_X3Y137         FDRE                                         r  craft_encrypt_inst/state_reg[47]/C
+
+Slack:                    inf
+  Source:                 CPU_RESETN
+                            (input port)
+  Destination:            craft_encrypt_inst/state_reg[13]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Hold (Min at Fast Process Corner)
+  Data Path Delay:        1.098ns  (logic 0.320ns (29.110%)  route 0.778ns (70.890%))
+  Logic Levels:           2  (IBUF=1 LUT5=1)
+  Clock Path Skew:        2.029ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.029ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    C12                                               0.000     0.000 r  CPU_RESETN (IN)
+                         net (fo=0)                   0.000     0.000    CPU_RESETN
+    C12                  IBUF (Prop_ibuf_I_O)         0.275     0.275 r  CPU_RESETN_IBUF_inst/O
+                         net (fo=73, routed)          0.778     1.053    craft_encrypt_inst/rst_n
+    SLICE_X7Y137         LUT5 (Prop_lut5_I3_O)        0.045     1.098 r  craft_encrypt_inst/state[13]_i_1/O
+                         net (fo=1, routed)           0.000     1.098    craft_encrypt_inst/p_1_in[13]
+    SLICE_X7Y137         FDRE                                         r  craft_encrypt_inst/state_reg[13]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  CLK100MHZ (IN)
+                         net (fo=0)                   0.000     0.000    CLK100MHZ
+    E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  CLK100MHZ_IBUF_inst/O
+                         net (fo=1, routed)           0.699     1.136    CLK100MHZ_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  CLK100MHZ_IBUF_BUFG_inst/O
+                         net (fo=152, routed)         0.863     2.029    craft_encrypt_inst/clk
+    SLICE_X7Y137         FDRE                                         r  craft_encrypt_inst/state_reg[13]/C
 
 
 
