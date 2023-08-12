@@ -2,6 +2,7 @@ module craft_round (
     input  wire [63:0] din,
     input  wire [63:0] tk,
     input  wire [ 7:0] rc,
+    output wire [63:0] add_key,
     output wire [63:0] dout
 );
   // MixColumn
@@ -22,6 +23,8 @@ module craft_round (
   assign rt[47-:16] = {rc_row1 ^ tk[47-:8], mx_row1[7-:8] ^ tk[39-:8]};
   assign rt[31-:16] = din[31-:16] ^ tk[31-:16];
   assign rt[15-:16] = din[15-:16] ^ tk[15-:16];
+
+  assign add_key = rt;
 
   // PermuteNibbles
   wire [63:0] pn;

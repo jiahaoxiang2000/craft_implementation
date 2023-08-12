@@ -1,0 +1,14 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../../src/craft/craft_encrypt.v" \
+"../../../../../src/craft/craft_key_schedule.v" \
+"../../../../../src/craft/craft_round.v" \
+"../../../../../src/craft/craft_round_constants.v" \
+"../../../../../src/craft/craft_sbox.v" \
+"../../../../../src/benchtest/tb_craft_encrypt.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
