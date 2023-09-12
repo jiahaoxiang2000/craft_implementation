@@ -1,20 +1,26 @@
 module craft_sbox (
-    input  wire [15:0] din,
-    output wire [15:0] dout
+    input  wire [3:0] din,
+    output wire [3:0] dout
 );
-  // b0 = (A ^ 1) & (C ^ 1) | (A & (B ^ 1) & (C ^ 1)) | ((A ^ 1) & C & (D ^ 1))
-  // b1 = B & C | ((A ^ 1) & (D ^ 1)) | (A & C & D)
-  // b2 = (A ^ 1) & D | ((A ^ 1) & B) | (B & D)
-  // b3 = (A ^ 1) & C | ((A ^ 1) & B & D) | ((B ^ 1) & C) | (A & (B ^ 1) & D)
 
-  genvar i;
-  generate
-    for (i = 0; i < 4; i = i + 1) begin : sbox_boolean
-      assign dout[i*4+3]=(~din[i*4+3] & ~din[i*4+1]) | (din[i*4+3] & ~din[i*4+2] & ~din[i*4+1]) | (~din[i*4+3] & din[i*4+1] & ~din[i*4+0]);
-      assign dout[i*4+2]=(din[i*4+2] & din[i*4+1]) | (~din[i*4+3] & ~din[i*4+0]) | (din[i*4+3] & din[i*4+1] & din[i*4+0]);
-      assign dout[i*4+1]=(~din[i*4+3] & din[i*4+0]) | (~din[i*4+3] & din[i*4+2]) | (din[i*4+2] & din[i*4+0]);
-      assign dout[i*4] = (~din[i*4+3] & din[i*4+1]) | (~din[i*4+3] & din[i*4+2] & din[i*4+0]) | (~din[i*4+2] & din[i*4+1]) | (din[i*4+3] & ~din[i*4+2]& din[i*4+0]);
-    end
-  endgenerate
+  wire [3 : 0] sbox[0 : 15];
+  assign sbox[4'h0] = 4'hc;
+  assign sbox[4'h1] = 4'ha;
+  assign sbox[4'h2] = 4'hd;
+  assign sbox[4'h3] = 4'h3;
+  assign sbox[4'h4] = 4'he;
+  assign sbox[4'h5] = 4'hb;
+  assign sbox[4'h6] = 4'hf;
+  assign sbox[4'h7] = 4'h7;
+  assign sbox[4'h8] = 4'h8;
+  assign sbox[4'h9] = 4'h9;
+  assign sbox[4'ha] = 4'h1;
+  assign sbox[4'hb] = 4'h5;
+  assign sbox[4'hc] = 4'h0;
+  assign sbox[4'hd] = 4'h2;
+  assign sbox[4'he] = 4'h4;
+  assign sbox[4'hf] = 4'h6;
+
+  assign dout = sbox[din];
 
 endmodule  //craft_sbox
