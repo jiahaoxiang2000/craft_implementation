@@ -1,3 +1,5 @@
+`include "craft_sbox.v"
+
 module craft_round (
     input  wire [63:0] din,
     input  wire [63:0] tk,

@@ -1,11 +1,11 @@
+`include "craft_encrypt.v"
+
 module tb_craft_encrypt ();
 
   parameter PERIOD = 2;
   reg CLK;
   reg CE;
   reg RST;
-
-
 
   initial begin
     CLK = 1'b0;
@@ -34,6 +34,9 @@ module tb_craft_encrypt ();
     RST = 1'b0;
     #(PERIOD);
     RST = 1'b1;
+
+    $display("Hello, Xjh!");
+    $finish;
   end
 
 

@@ -1,3 +1,8 @@
+`include "craft_round_constants.v"
+`include "craft_key_schedule.v"
+`include "craft_round.v"
+`include "craft_sbox.v"
+
 module craft_encrypt (
     input wire clk,
     input wire rst_n,
@@ -8,7 +13,10 @@ module craft_encrypt (
     output reg [63:0] ciphertext
 );
 
-  reg [7:0] r;
+  reg  [ 7:0] r;
+  reg  [63:0] state;
+  wire [63:0] state_next;
+  wire [63:0] add_key;
 
   always @(posedge clk) begin
     if (!rst_n) begin
@@ -45,9 +53,7 @@ module craft_encrypt (
       .TK(tk)
   );
 
-  reg  [63:0] state;
-  wire [63:0] state_next;
-  wire [63:0] add_key;
+
 
   always @(posedge clk) begin
     if (!rst_n) begin
@@ -57,7 +63,6 @@ module craft_encrypt (
     end else begin
       state <= state;
     end
-
   end
 
   craft_round craft_round_inst_0 (

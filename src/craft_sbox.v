@@ -1,3 +1,6 @@
+`ifndef craft_sbox
+
+`define craft_sbox
 module craft_sbox (
     input  wire [3:0] din,
     output wire [3:0] dout
@@ -24,3 +27,5 @@ module craft_sbox (
   assign dout = sbox[din];
 
 endmodule  //craft_sbox
+`endif  //craft_sbox
+
