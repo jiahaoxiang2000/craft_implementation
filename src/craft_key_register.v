@@ -1,33 +1,18 @@
 module craft_key_register (
-    input wire clk,
-    input wire en,
-    input wire [128-1:0] key,
-    input wire [64-1:0] tweak,
+    input clk,
+    input en,
+    input [128-1:0] key,
+    input [64-1:0] tweak,
     input [8-1:0] r,
-    input wire CK0,
+    input CK0,
     output wire [3:0] out,
     output wire [7:0] rc
 );
 
   wire [63:0] t_key;
   wire [63:0] t_tweak;
-
-  reg  [3:0] key00;
-  reg  [3:0] key01;
-  reg  [3:0] key02;
-  reg  [3:0] key03;
-  reg  [3:0] key04;
-  reg  [3:0] key05;
-  reg  [3:0] key06;
-  reg  [3:0] key07;
-  reg  [3:0] key08;
-  reg  [3:0] key09;
-  reg  [3:0] key10;
-  reg  [3:0] key11;
-  reg  [3:0] key12;
-  reg  [3:0] key13;
-  reg  [3:0] key14;
-  reg  [3:0] key15;
+  wire [63:0] TK;
+  reg [63:0] key_registers;
 
   function [63 : 0] q_permutation(input [63 : 0] data);
     begin
@@ -76,12 +61,33 @@ module craft_key_register (
   always @(posedge clk) begin
     if (en) begin
       if (CK0) begin
-        key_register <= TK;
+        // we let round const XOR with key, is equal to XOR with internal state
+        key_registers <= {
+          TK[(15-3)*4+:16], TK[(15-4)*4+:4] ^ rc[7-:4], TK[(15-5)*4+:4] ^ rc[3-:4], TK[(15-15)*4+:40]
+        };
       end else begin
-        key_register <= key_register ^ TK;
+        key_registers <= {
+          key_registers[(15-4)*4+:4],
+          key_registers[(15-5)*4+:4],
+          key_registers[(15-6)*4+:4],
+          key_registers[(15-7)*4+:4],
+          key_registers[(15-8)*4+:4],
+          key_registers[(15-9)*4+:4],
+          key_registers[(15-10)*4+:4],
+          key_registers[(15-11)*4+:4],
+          key_registers[(15-12)*4+:4],
+          key_registers[(15-13)*4+:4],
+          key_registers[(15-14)*4+:4],
+          key_registers[(15-15)*4+:4],
+          key_registers[(15-1)*4+:4],
+          key_registers[(15-2)*4+:4],
+          key_registers[(15-3)*4+:4],
+          key_registers[(15-0)*4+:4]
+        };
       end
     end
   end
 
-
+  assign out = key_registers[63-:4];
+  
 endmodule  //craft_key_register

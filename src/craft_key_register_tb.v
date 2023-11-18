@@ -29,20 +29,38 @@ module craft_key_register_tb;
 
   initial begin
     CLK = 1'b0;
-    CK0 = 1'b1;
+    CK0 = 1'b0;
+    EN = 1'b1;
     tb_key = 128'h27a6_781a_43f3_64bc_9167_08d5_fbb5_aefe;
     tb_tweak = 64'h54cd_94ff_d067_0a58;
-    #(PERIOD / 2);
+    // #(PERIOD / 2);
     forever #(PERIOD / 2) CLK = ~CLK;
   end
 
 
 
   integer i;
+  integer j;
   initial begin
-    for (i = 0; i <= 32; i = i + 1) begin
-      #(PERIOD);
+    for (i = 0; i < 4; i = i + 1) begin
+      CK0 = 1'b1;
       tb_round = i;
+      #(PERIOD);
+      CK0 = 1'b0;
+      #(PERIOD);
+      for (j = 0; j < 15; j = j + 1) begin
+        #(PERIOD);
+      end
+    end
+
+    CK0 = 1'b1;
+    tb_round = 4;
+    EN = 1'b0;
+    #(PERIOD);
+    CK0 = 1'b0;
+    #(PERIOD);
+    for (j = 0; j < 15; j = j + 1) begin
+      #(PERIOD);
     end
     $finish;
   end
@@ -51,7 +69,6 @@ module craft_key_register_tb;
   initial begin
     $dumpfile("wave.vcd");
     $dumpvars(0, craft_key_register_tb);
-
   end
 
 endmodule  //craft_key_schedule_tb
