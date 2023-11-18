@@ -12,7 +12,9 @@ module craft_key_register (
   wire [63:0] t_key;
   wire [63:0] t_tweak;
   wire [63:0] TK;
+  wire [63:0] t_keys;
   reg [63:0] key_registers;
+
 
   function [63 : 0] q_permutation(input [63 : 0] data);
     begin
@@ -67,26 +69,27 @@ module craft_key_register (
         };
       end else begin
         key_registers <= {
-          key_registers[(15-4)*4+:4],
-          key_registers[(15-5)*4+:4],
-          key_registers[(15-6)*4+:4],
-          key_registers[(15-7)*4+:4],
-          key_registers[(15-8)*4+:4],
-          key_registers[(15-9)*4+:4],
-          key_registers[(15-10)*4+:4],
-          key_registers[(15-11)*4+:4],
-          key_registers[(15-12)*4+:4],
-          key_registers[(15-13)*4+:4],
-          key_registers[(15-14)*4+:4],
-          key_registers[(15-15)*4+:4],
-          key_registers[(15-1)*4+:4],
-          key_registers[(15-2)*4+:4],
-          key_registers[(15-3)*4+:4],
-          key_registers[(15-0)*4+:4]
+          t_keys[(15-4)*4+:4],
+          t_keys[(15-5)*4+:4],
+          t_keys[(15-6)*4+:4],
+          t_keys[(15-7)*4+:4],
+          t_keys[(15-8)*4+:4],
+          t_keys[(15-9)*4+:4],
+          t_keys[(15-10)*4+:4],
+          t_keys[(15-11)*4+:4],
+          t_keys[(15-12)*4+:4],
+          t_keys[(15-13)*4+:4],
+          t_keys[(15-14)*4+:4],
+          t_keys[(15-15)*4+:4],
+          t_keys[(15-1)*4+:4],
+          t_keys[(15-2)*4+:4],
+          t_keys[(15-3)*4+:4],
+          t_keys[(15-0)*4+:4]
         };
       end
     end
   end
+  assign t_keys = key_registers;
 
   assign out = key_registers[63-:4];
   
