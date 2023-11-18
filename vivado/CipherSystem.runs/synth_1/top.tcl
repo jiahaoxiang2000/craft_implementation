@@ -106,7 +106,7 @@ read_checkpoint -auto_incremental -incremental C:/Users/xjh/CodeSpace/verilog/Ci
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top top -part xc7a100tcsg324-1
+synth_design -top top -part xc7a100tcsg324-1 -directive AreaOptimized_high -control_set_opt_threshold 1
 OPTRACE "synth_design" END { }
 if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
  send_msg_id runtcl-6 info "Synthesis results are not added to the cache due to CRITICAL_WARNING"

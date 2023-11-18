@@ -2,6 +2,8 @@
 `include "craft_mix_columns.v"
 `include "craft_key_register.v"
 `include "craft_sbox.v"
+`include "craft_state_register.v"
+
 module top (
     input wire CLK100MHZ,
     input wire CPU_RESETN,
@@ -66,6 +68,18 @@ module top (
   (* dont_touch = "yes" *) craft_sbox craft_sbox_inst (
       .din (out),
       .dout(outCell)
+  );
+  reg [3:0] in = 4'h0;
+  wire [3:0] state_register_out;
+
+  (* dont_touch = "yes" *) craft_state_register craft_state_register_inst(
+      .clk(CLK100MHZ),
+      .ce(1'b1),
+      .plaintext(plaintext),
+      .in(in),
+      .CS0(1'b1),
+      .CS1(1'b1),
+      .out(state_register_out)
   );
 
 endmodule
