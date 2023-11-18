@@ -1,6 +1,7 @@
 `timescale 1ns / 1ps
 `include "craft_mix_columns.v"
 `include "craft_key_register.v"
+`include "craft_sbox.v"
 module top (
     input wire CLK100MHZ,
     input wire CPU_RESETN,
@@ -60,6 +61,11 @@ module top (
       .CK0(1'b1),
       .out(out),
       .rc(rc)
+  );
+
+  (* dont_touch = "yes" *) craft_sbox craft_sbox_inst (
+      .din (out),
+      .dout(outCell)
   );
 
 endmodule

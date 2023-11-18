@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Sat Nov 18 14:04:43 2023
+| Date         : Sat Nov 18 14:28:39 2023
 | Host         : xjh-laptop running 64-bit major release  (build 9200)
 | Command      : report_drc -file top_drc_routed.rpt -pb top_drc_routed.pb -rpx top_drc_routed.rpx
 | Design       : top
@@ -49,7 +49,8 @@ Related violations: <none>
 
 RTSTAT-10#1 Warning
 No routable loads  
-2 net(s) have no routable loads. The problem bus(es) and/or net(s) are craft_key_register_inst/rc[0], craft_key_register_inst/rc[4].
+6 net(s) have no routable loads. The problem bus(es) and/or net(s) are craft_key_register_inst/rc[0], craft_key_register_inst/rc[4]
+craft_sbox_inst/dout[3:0].
 Related violations: <none>
 
 
