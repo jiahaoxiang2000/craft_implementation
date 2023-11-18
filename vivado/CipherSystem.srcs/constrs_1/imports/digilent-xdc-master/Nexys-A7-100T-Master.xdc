@@ -214,3 +214,5 @@ set_property -dict {PACKAGE_PIN C12 IOSTANDARD LVCMOS33} [get_ports CPU_RESETN]
 
 
 
+
+set_operating_conditions -process maximum

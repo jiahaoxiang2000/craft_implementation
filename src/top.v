@@ -1,5 +1,6 @@
 `timescale 1ns / 1ps
 `include "craft_encrypt.v"
+`include "craft_mix_columns.v"
 
 module top (
     input wire CLK100MHZ,
@@ -12,9 +13,7 @@ module top (
 
   wire [64-1:0] TK;
   reg flag;
-
   wire [7:0] rc;
-
   assign LED = flag;
 
   always @(posedge CLK100MHZ) begin
@@ -40,5 +39,14 @@ module top (
       .done(done),
       .ciphertext(ciphertext)
   );
-
+  reg [3:0] inCell = 4'h0;
+  wire [3:0] outCell;
+  
+  (* dont_touch = "yes" *) craft_mix_columns craft_mix_columns_inst (
+      .clk(CLK100MHZ),
+      .in(inCell),
+      .CM0(1'b1),
+      .CM1(1'b1),
+      .out(outCell)
+  );
 endmodule

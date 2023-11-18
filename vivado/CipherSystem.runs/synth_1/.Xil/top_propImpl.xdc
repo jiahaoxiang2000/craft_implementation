@@ -5,3 +5,5 @@ set_property src_info {type:XDC file:1 line:30 export:INPUT save:INPUT read:READ
 set_property -dict {PACKAGE_PIN H17 IOSTANDARD LVCMOS33} [get_ports LED]
 set_property src_info {type:XDC file:1 line:74 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN C12 IOSTANDARD LVCMOS33} [get_ports CPU_RESETN]
+set_property src_info {type:XDC file:1 line:218 export:INPUT save:INPUT read:READ} [current_design]
+set_operating_conditions -process maximum
