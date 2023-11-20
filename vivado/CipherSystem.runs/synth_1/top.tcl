@@ -97,6 +97,9 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
+read_xdc -mode out_of_context C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.srcs/craft_key_schedule/new/craft_key_schedule_ooc.xdc
+set_property used_in_implementation false [get_files C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.srcs/craft_key_schedule/new/craft_key_schedule_ooc.xdc]
+
 read_xdc C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.srcs/constrs_1/imports/digilent-xdc-master/Nexys-A7-100T-Master.xdc
 set_property used_in_implementation false [get_files C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.srcs/constrs_1/imports/digilent-xdc-master/Nexys-A7-100T-Master.xdc]
 
@@ -106,7 +109,7 @@ read_checkpoint -auto_incremental -incremental C:/Users/xjh/CodeSpace/verilog/Ci
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top top -part xc7a100tcsg324-1 -directive AreaOptimized_high -control_set_opt_threshold 1
+synth_design -top top -part xc7a100tcsg324-1
 OPTRACE "synth_design" END { }
 if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
  send_msg_id runtcl-6 info "Synthesis results are not added to the cache due to CRITICAL_WARNING"

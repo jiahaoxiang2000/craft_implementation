@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Sat Nov 18 20:03:59 2023
+| Date         : Mon Nov 20 10:32:18 2023
 | Host         : xjh-laptop running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -58,10 +58,10 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              96 |           34 |
+| No           | No                    | No                     |              96 |           37 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |               0 |            0 |
-| Yes          | No                    | No                     |              48 |           13 |
+| Yes          | No                    | No                     |              48 |           16 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
@@ -73,8 +73,8 @@ Table of Contents
 +----------------------+-------------------------------------------------------+------------------+------------------+----------------+--------------+
 |     Clock Signal     |                     Enable Signal                     | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------------+-------------------------------------------------------+------------------+------------------+----------------+--------------+
-|  CLK100MHZ_IBUF_BUFG | craft_state_register_inst/state_registers[63]_i_1_n_0 |                  |               13 |             48 |         3.69 |
-|  CLK100MHZ_IBUF_BUFG |                                                       |                  |               34 |             96 |         2.82 |
+|  CLK100MHZ_IBUF_BUFG | craft_state_register_inst/state_registers[63]_i_1_n_0 |                  |               16 |             48 |         3.00 |
+|  CLK100MHZ_IBUF_BUFG |                                                       |                  |               37 |             96 |         2.59 |
 +----------------------+-------------------------------------------------------+------------------+------------------+----------------+--------------+
 
 
