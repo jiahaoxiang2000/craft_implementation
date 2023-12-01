@@ -23,8 +23,7 @@ module craft_key_register_tb;
       .tweak(tb_tweak),
       .r(tb_round),
       .CK0(CK0),
-      .out(tb_out),
-      .rc(tb_rc)
+      .out(tb_out)
   );
 
   initial begin

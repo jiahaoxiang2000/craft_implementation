@@ -5,14 +5,14 @@ module craft_key_register (
     input [64-1:0] tweak,
     input [8-1:0] r,
     input CK0,
-    output wire [3:0] out,
-    output wire [7:0] rc
+    output wire [3:0] out
 );
 
   wire [63:0] t_key;
   wire [63:0] t_tweak;
   wire [63:0] TK;
   wire [63:0] t_keys;
+  wire [7:0] rc;
   reg [63:0] key_registers;
 
 

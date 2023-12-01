@@ -61,8 +61,7 @@ module top (
       .tweak(tweak),
       .r(round),
       .CK0(1'b1),
-      .out(out),
-      .rc(rc)
+      .out(out)
   );
 
   (* dont_touch = "yes" *) craft_sbox craft_sbox_inst (
