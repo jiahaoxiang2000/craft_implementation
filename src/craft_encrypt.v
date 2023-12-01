@@ -1,4 +1,8 @@
 `include "craft_sbox.v"
+`include "craft_state_register.v"
+`include "craft_key_register.v"
+`include "craft_mix_columns.v"
+`include "craft_sbox.v"
 
 module craft_encrypt (
     input wire clk,
@@ -13,15 +17,139 @@ module craft_encrypt (
   reg [7:0] r = 8'h00;
   reg [3:0] count = 4'h0;
   reg [1:0] repeat_count = 2'h0;
+  reg CS0 = 1'b1;
+  reg CS1 = 1'b0;
+  reg CK0;
+  reg CM0 = 1'b0;
+  reg CM1 = 1'b0;
+  reg ce_sr = 1'b1;
+  reg ce_kr = 1'b0;
+  wire [3:0] mc_in, sr_in, kr_out, mc_out, sb_in, sb_out;
 
-  reg [4:0] state = START, next_state;  // Define state and next_state variables
+
 
   parameter START = 5'b00000, KEY_SCHEDULE = 5'b00001, MIX_COLUMNS = 5'b00010, SUB_BOX = 5'b00100, PERMUT = 5'b01000, DONE = 5'b10000; // Define states
 
+  reg [4:0] state = 5'b00000;  // Define state variables
+  reg [4:0] next_state = 5'b00000;  // Define next_state variables
+
+  craft_state_register craft_state_register_inst (
+      .clk(clk),
+      .ce(ce_sr),
+      .plaintext(plaintext),
+      .in(sb_out),
+      .CS0(CS0),
+      .CS1(CS1),
+      .out(mc_in)
+  );
+
+  craft_mix_columns craft_mix_columns_inst (
+      .clk(clk),
+      .in (mc_in),
+      .CM0(CM0),
+      .CM1(CM1),
+      .out(mc_out)
+  );
+
+  craft_key_register craft_key_register_inst (
+      .clk(clk),
+      .en(ce_sr),
+      .key(key),
+      .tweak(tweak),
+      .r(r),
+      .CK0(CK0),
+      .out(kr_out)
+  );
+
+  assign sb_in = mc_out ^ kr_out;
+  craft_sbox craft_sbox_inst (
+      .din (sb_in),
+      .dout(sb_out)
+  );
+
+  always @(posedge clk) begin
+    case (next_state)
+      START: begin
+        // state register control sign
+        ce_sr = 1'b1;
+        CS0   = 1'b1;
+        CS1   = 1'b0;
+        // key register control sign
+        ce_kr = 1'b0;
+        // mix columns control sign
+        CM0   = 1'b0;
+        CM1   = 1'b0;
+      end
+      KEY_SCHEDULE: begin
+        // state register control sign
+        ce_sr = 1'b0;
+        // key register control sign
+        ce_kr = 1'b1;
+        CK0   = 1'b1;
+        // mix columns control sign
+        CM0   = 1'b0;
+        CM1   = 1'b0;
+      end
+      MIX_COLUMNS: begin
+        // state register control sign
+        if (count == 4'h4) begin
+          ce_sr = 1'b0;
+        end else begin
+          ce_sr = 1'b1;
+          CS0   = 1'b0;
+          CS1   = 1'b0;
+        end
+        // key register control sign
+        ce_kr = 1'b0;
+        // mix columns control sign
+        if (count == 4'h4) begin
+          CM0 = 1'b0;
+          CM1 = 1'b1;
+        end else begin
+          CM0 = 1'b1;
+          CM1 = 1'b1;
+        end
+      end
+      SUB_BOX: begin
+        // state register control sign
+        ce_sr = 1'b1;
+        CS0   = 1'b1;
+        CS1   = 1'b1;
+        // key register control sign
+        ce_kr = 1'b1;
+        CK0   = 1'b0;
+        // mix columns control sign
+        CM0   = 1'b1;
+        CM1   = 1'b1;
+      end
+      PERMUT: begin
+        // state register control sign
+        ce_sr = 1'b1;
+        CS0   = 1'b0;
+        CS1   = 1'b1;
+        // key register control sign
+        ce_kr = 1'b0;
+        // mix columns control sign
+        CM0   = 1'b0;
+        CM1   = 1'b0;
+      end
+      DONE: begin
+        // state register control sign
+        ce_sr = 1'b0;
+        // key register control sign
+        ce_kr = 1'b0;
+        // mix columns control sign
+        CM0   = 1'b0;
+        CM1   = 1'b0;
+      end
+    endcase
+  end
 
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       state <= START;
+      next_state <= START;
+      done <= 1'b0;
       r <= 8'h00;
     end else begin
       state <= next_state;

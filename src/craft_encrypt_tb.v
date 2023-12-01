@@ -36,8 +36,6 @@ module craft_encrypt_tb ();
     #(PERIOD);
     RST = 1'b1;
     #(PERIOD * 1500);
-
-
     $finish;
   end
 
