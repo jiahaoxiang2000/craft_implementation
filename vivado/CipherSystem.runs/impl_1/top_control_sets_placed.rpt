@@ -1,11 +1,11 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Sat Dec  2 08:44:57 2023
+| Date         : Sat Dec  2 13:34:32 2023
 | Host         : xjh-laptop running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
-| Device       : xc7a100t
+| Device       : xc7s100
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 Control Set Information
@@ -61,7 +61,7 @@ Table of Contents
 | No           | No                    | No                     |              96 |           37 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |               0 |            0 |
-| Yes          | No                    | No                     |              48 |           14 |
+| Yes          | No                    | No                     |              48 |           17 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
@@ -73,7 +73,7 @@ Table of Contents
 +----------------------+--------------------------------------------------------------------------+------------------+------------------+----------------+--------------+
 |     Clock Signal     |                               Enable Signal                              | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------------+--------------------------------------------------------------------------+------------------+------------------+----------------+--------------+
-|  CLK100MHZ_IBUF_BUFG | craft_encrypt_inst/craft_state_register_inst/state_registers[63]_i_1_n_0 |                  |               14 |             48 |         3.43 |
+|  CLK100MHZ_IBUF_BUFG | craft_encrypt_inst/craft_state_register_inst/state_registers[63]_i_1_n_0 |                  |               17 |             48 |         2.82 |
 |  CLK100MHZ_IBUF_BUFG |                                                                          |                  |               37 |             96 |         2.59 |
 +----------------------+--------------------------------------------------------------------------+------------------+------------------+----------------+--------------+
 
