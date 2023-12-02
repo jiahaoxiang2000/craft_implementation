@@ -1,5 +1,10 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
+"../../../../../src/craft_key_register.v" \
+"../../../../../src/craft_mix_columns.v" \
+"../../../../../src/craft_sbox.v" \
+"../../../../../src/craft_state_register.v" \
+"../../../../../src/top.v" \
 "../../../../../src/craft_encrypt_tb.v" \
 
 # compile glbl module

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Mon Nov 20 10:31:50 2023
+| Date         : Sat Dec  2 08:44:28 2023
 | Host         : xjh-laptop running 64-bit major release  (build 9200)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -149,10 +149,11 @@ Warning! LUT value is adjusted to account for LUT combining.
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
 | FDRE     |  144 |        Flop & Latch |
-| LUT6     |   73 |                 LUT |
+| LUT6     |   69 |                 LUT |
 | LUT3     |   60 |                 LUT |
 | LUT5     |   48 |                 LUT |
 | LUT4     |   31 |                 LUT |
+| LUT2     |    4 |                 LUT |
 | OBUF     |    1 |                  IO |
 | IBUF     |    1 |                  IO |
 | BUFG     |    1 |               Clock |

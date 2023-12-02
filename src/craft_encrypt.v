@@ -11,7 +11,7 @@ module craft_encrypt (
     input wire [63:0] tweak,
     input wire [127:0] key,
     output reg done,
-    output reg [63:0] ciphertext
+    output wire [63:0] ciphertext
 );
 
   reg [7:0] r = 8'h00;
@@ -33,17 +33,20 @@ module craft_encrypt (
   reg [4:0] state = 5'b00000;  // Define state variables
   reg [4:0] next_state = 5'b00000;  // Define next_state variables
 
-  craft_state_register craft_state_register_inst (
+  assign sr_in = (r == 8'd31 && next_state != PERMUT || r == 8'd32) ? sb_in : sb_out;
+
+  (* dont_touch = "yes" *)  craft_state_register craft_state_register_inst (
       .clk(clk),
       .ce(ce_sr),
       .plaintext(plaintext),
-      .in(sb_out),
+      .in(sr_in),
       .CS0(CS0),
       .CS1(CS1),
-      .out(mc_in)
+      .out(mc_in),
+      .state_registers(ciphertext)
   );
 
-  craft_mix_columns craft_mix_columns_inst (
+  (* dont_touch = "yes" *) craft_mix_columns craft_mix_columns_inst (
       .clk(clk),
       .in (mc_in),
       .CM0(CM0),
@@ -51,9 +54,9 @@ module craft_encrypt (
       .out(mc_out)
   );
 
-  craft_key_register craft_key_register_inst (
+  (* dont_touch = "yes" *)  craft_key_register craft_key_register_inst (
       .clk(clk),
-      .en(ce_sr),
+      .en(ce_kr),
       .key(key),
       .tweak(tweak),
       .r(r),
@@ -62,7 +65,7 @@ module craft_encrypt (
   );
 
   assign sb_in = mc_out ^ kr_out;
-  craft_sbox craft_sbox_inst (
+ (* dont_touch = "yes" *) craft_sbox craft_sbox_inst (
       .din (sb_in),
       .dout(sb_out)
   );
@@ -124,9 +127,13 @@ module craft_encrypt (
       end
       PERMUT: begin
         // state register control sign
-        ce_sr = 1'b1;
-        CS0   = 1'b0;
-        CS1   = 1'b1;
+        if (count == 4'h1) begin
+          ce_sr = 1'b0;
+        end else begin
+          ce_sr = 1'b1;
+          CS0   = 1'b0;
+          CS1   = 1'b1;
+        end
         // key register control sign
         ce_kr = 1'b0;
         // mix columns control sign
@@ -208,12 +215,16 @@ module craft_encrypt (
         // Transition conditions from PERMUT state
         if (1) begin
           next_state = KEY_SCHEDULE;
+          count <= 4'h0;
         end else next_state = PERMUT;
       end
       DONE: begin
         // Transition conditions from DONE state
         if (0) next_state = START;
-        else next_state = DONE;
+        else begin
+          next_state = DONE;
+          done <= 1'b1;
+        end
       end
     endcase
   end

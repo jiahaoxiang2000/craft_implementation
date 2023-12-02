@@ -71,6 +71,7 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 5
+set_msg_config -id {Common 17-41} -limit 10000000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a100tcsg324-1
 
@@ -87,7 +88,13 @@ set_property ip_output_repo c:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/C
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/top.v
+read_verilog -library xil_defaultlib {
+  C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_key_register.v
+  C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_mix_columns.v
+  C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_sbox.v
+  C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_state_register.v
+  C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/top.v
+}
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

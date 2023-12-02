@@ -5,7 +5,8 @@ module craft_state_register (
     input [3:0] in,
     input CS0,
     input CS1,
-    output [3:0] out
+    output [3:0] out,
+    output [63:0] state_registers
 );
 
   reg [63:0] state_registers;

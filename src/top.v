@@ -1,8 +1,6 @@
 `timescale 1ns / 1ps
-`include "craft_mix_columns.v"
-`include "craft_key_register.v"
-`include "craft_sbox.v"
-`include "craft_state_register.v"
+`include "craft_encrypt.v"
+
 
 module top (
     input wire CLK100MHZ,
@@ -32,53 +30,17 @@ module top (
   wire done;
   wire [63:0] ciphertext;
 
-  // (* dont_touch = "yes" *) craft_encrypt craft_encrypt_inst (
-  //     .clk(CLK100MHZ),
-  //     .rst_n(CPU_RESETN),
-  //     .plaintext(plaintext),
-  //     .tweak(tweak),
-  //     .key(key),
-  //     .done(done),
-  //     .ciphertext(ciphertext)
-  // );
-
-  reg [3:0] inCell = 4'h0;
-  wire [3:0] outCell;
-
-  (* dont_touch = "yes" *) craft_mix_columns craft_mix_columns_inst (
+  (* dont_touch = "yes" *) craft_encrypt craft_encrypt_inst (
       .clk(CLK100MHZ),
-      .in (inCell),
-      .CM0(1'b1),
-      .CM1(1'b1),
-      .out(outCell)
-  );
-
-  wire [3:0] out;
-  (* dont_touch = "yes" *) craft_key_register craft_key_register_inst (
-      .clk(CLK100MHZ),
-      .en(1'b1),
-      .key(key),
-      .tweak(tweak),
-      .r(round),
-      .CK0(1'b1),
-      .out(out)
-  );
-
-  (* dont_touch = "yes" *) craft_sbox craft_sbox_inst (
-      .din (out),
-      .dout(outCell)
-  );
-  reg [3:0] in = 4'h0;
-  wire [3:0] state_register_out;
-
-  (* dont_touch = "yes" *) craft_state_register craft_state_register_inst(
-      .clk(CLK100MHZ),
-      .ce(1'b1),
+      .rst_n(CPU_RESETN),
       .plaintext(plaintext),
-      .in(in),
-      .CS0(1'b1),
-      .CS1(1'b1),
-      .out(state_register_out)
+      .tweak(tweak),
+      .key(key),
+      .done(done),
+      .ciphertext(ciphertext)
   );
+
+
+  
 
 endmodule
