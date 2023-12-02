@@ -115,7 +115,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -125,14 +124,33 @@ set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 5
   set_param runs.launchOptions { -jobs 20  }
-  reset_param project.defaultXPMLibraries 
-  open_checkpoint C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.runs/impl_1/top.dcp
+OPTRACE "create in-memory project" START { }
+  create_project -in_memory -part xc7a100tcsg324-1
+  set_property design_mode GateLvl [current_fileset]
+  set_param project.singleFileAddWarning.threshold 0
+OPTRACE "create in-memory project" END { }
+OPTRACE "set parameters" START { }
   set_property webtalk.parent_dir C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.cache/wt [current_project]
   set_property parent.project_path C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.xpr [current_project]
   set_property ip_repo_paths C:/Users/xjh/CodeSpace/verilog/tools/Xilinx/library/vivado-library-zmod-v1-2019.1-2 [current_project]
   update_ip_catalog
   set_property ip_output_repo C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
+OPTRACE "set parameters" END { }
+OPTRACE "add files" START { }
+  add_files -quiet C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.runs/synth_1/top.dcp
+OPTRACE "read constraints: implementation" START { }
+  read_xdc -mode out_of_context C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.srcs/craft_key_schedule/new/craft_key_schedule_ooc.xdc
+  read_xdc C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.srcs/constrs_1/imports/digilent-xdc-master/Nexys-A7-100T-Master.xdc
+OPTRACE "read constraints: implementation" END { }
+OPTRACE "read constraints: implementation_pre" START { }
+OPTRACE "read constraints: implementation_pre" END { }
+OPTRACE "add files" END { }
+OPTRACE "link_design" START { }
+  link_design -top top -part xc7a100tcsg324-1 
+OPTRACE "link_design" END { }
+OPTRACE "gray box cells" START { }
+OPTRACE "gray box cells" END { }
 OPTRACE "init_design_reports" START { REPORT }
 OPTRACE "init_design_reports" END { }
 OPTRACE "init_design_write_hwdef" START { }
