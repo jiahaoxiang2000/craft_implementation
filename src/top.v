@@ -1,7 +1,6 @@
 `timescale 1ns / 1ps
 `include "craft_encrypt.v"
 
-
 module top (
     input wire CLK100MHZ,
     input wire CPU_RESETN,

@@ -1,15 +1,15 @@
-`timescale 1ns / 1ps
 `include "craft_encrypt.v"
-
-module craft_encrypt_tb ();
+module tb_craft_encrypt ();
 
   parameter PERIOD = 2;
   reg CLK;
+  reg CE;
   reg RST;
+
+
 
   initial begin
     CLK = 1'b0;
-    RST = 1'b1;
     #(PERIOD / 2);
     forever #(PERIOD / 2) CLK = ~CLK;
   end
@@ -20,7 +20,7 @@ module craft_encrypt_tb ();
   wire done;
   wire [63:0] ciphertext;
 
-  craft_encrypt craft_encrypt_tb_inst (
+  craft_encrypt craft_encrypt_tb (
       .clk(CLK),
       .rst_n(RST),
       .plaintext(plaintext),
@@ -35,13 +35,7 @@ module craft_encrypt_tb ();
     RST = 1'b0;
     #(PERIOD);
     RST = 1'b1;
-    #(PERIOD * 1500);
-    $finish;
   end
 
-  initial begin
-    $dumpfile("wave.vcd");
-    $dumpvars(0, craft_encrypt_tb);
-  end
 
 endmodule  //craft_round_constants

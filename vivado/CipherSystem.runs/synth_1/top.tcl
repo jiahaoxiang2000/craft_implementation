@@ -89,10 +89,11 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_key_register.v
-  C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_mix_columns.v
+  C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_round_constants.v
+  C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_key_schedule.v
   C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_sbox.v
-  C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_state_register.v
+  C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_round.v
+  C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_encrypt.v
   C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/top.v
 }
 OPTRACE "Adding files" END { }
