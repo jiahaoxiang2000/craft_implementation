@@ -1,11 +1,11 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Sun Dec  3 07:44:43 2023
+| Date             : Sun Dec  3 08:10:50 2023
 | Host             : xjh-laptop running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
-| Device           : xc7a100tcsg324-1
+| Device           : xc7k70tfbg484-1
 | Design State     : routed
 | Grade            : commercial
 | Process          : maximum
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.146        |
+| Total On-Chip Power (W)  | 0.153        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.007        |
-| Device Static (W)        | 0.139        |
-| Effective TJA (C/W)      | 4.6          |
-| Max Ambient (C)          | 84.3         |
-| Junction Temperature (C) | 25.7         |
+| Dynamic (W)              | 0.008        |
+| Device Static (W)        | 0.145        |
+| Effective TJA (C/W)      | 2.5          |
+| Max Ambient (C)          | 84.6         |
+| Junction Temperature (C) | 25.4         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -54,14 +54,14 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.001 |        3 |       --- |             --- |
 | Slice Logic    |     0.004 |      642 |       --- |             --- |
-|   LUT as Logic |     0.004 |      378 |     63400 |            0.60 |
-|   Register     |    <0.001 |      157 |    126800 |            0.12 |
+|   LUT as Logic |     0.004 |      377 |     41000 |            0.92 |
+|   Register     |    <0.001 |      157 |     82000 |            0.19 |
 |   BUFG         |    <0.001 |        1 |        32 |            3.13 |
 |   Others       |     0.000 |        8 |       --- |             --- |
-| Signals        |     0.003 |      470 |       --- |             --- |
-| I/O            |    <0.001 |        3 |       210 |            1.43 |
-| Static Power   |     0.139 |          |           |                 |
-| Total          |     0.146 |          |           |                 |
+| Signals        |     0.003 |      468 |       --- |             --- |
+| I/O            |    <0.001 |        3 |       285 |            1.05 |
+| Static Power   |     0.145 |          |           |                 |
+| Total          |     0.153 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,8 +71,8 @@ Table of Contents
 +-----------+-------------+------------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A)  | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+------------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.064* |       0.007 |      0.057 |       0.209 | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.030* |       0.000 |      0.030 |       0.065 | Unspecified | NA         |
+| Vccint    |       1.000 |     0.083* |       0.008 |      0.075 |       0.510 | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.020* |       0.000 |      0.020 |       0.057 | Unspecified | NA         |
 | Vcco33    |       3.300 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -80,9 +80,10 @@ Table of Contents
 | Vcco135   |       1.350 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.001* |       0.000 |      0.001 |       0.060 | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.001* |       0.000 |      0.001 |       0.040 | Unspecified | NA         |
 | MGTAVcc   |       1.000 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| MGTVccaux |       1.800 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |      0.030 |       0.000 |      0.030 |       NA    | Unspecified | NA         |
 +-----------+-------------+------------+-------------+------------+-------------+-------------+------------+
 * Power-up current exceeds the steady-state current
@@ -112,10 +113,10 @@ Table of Contents
 
 +-----------------------+--------------------------+
 | Ambient Temp (C)      | 25.0                     |
-| ThetaJA (C/W)         | 4.6                      |
+| ThetaJA (C/W)         | 2.5                      |
 | Airflow (LFM)         | 250                      |
 | Heat Sink             | medium (Medium Profile)  |
-| ThetaSA (C/W)         | 4.6                      |
+| ThetaSA (C/W)         | 4.2                      |
 | Board Selection       | medium (10"x10")         |
 | # of Board Layers     | 12to15 (12 to 15 Layers) |
 | Board Temperature (C) | 25.0                     |
@@ -141,10 +142,10 @@ Table of Contents
 +------------------------+-----------+
 | Name                   | Power (W) |
 +------------------------+-----------+
-| top                    |     0.007 |
-|   craft_encrypt_inst   |     0.007 |
-|     craft_round_inst_0 |     0.001 |
-|     craft_round_inst_1 |     0.003 |
+| top                    |     0.008 |
+|   craft_encrypt_inst   |     0.008 |
+|     craft_round_inst_0 |     0.002 |
+|     craft_round_inst_1 |     0.004 |
 +------------------------+-----------+
 
 
