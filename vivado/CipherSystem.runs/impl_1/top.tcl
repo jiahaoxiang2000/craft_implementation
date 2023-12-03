@@ -115,6 +115,9 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
+set_msg_config -id {Common 17-41} -limit 10000000
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -122,10 +125,12 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
+  set_param checkpoint.writeSynthRtdsInDcp 1
   set_param chipscope.maxJobs 5
+  set_param synth.incrementalSynthesisCache C:/Users/xjh/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-30896-xjh-laptop/incrSyn
   set_param runs.launchOptions { -jobs 20  }
 OPTRACE "create in-memory project" START { }
-  create_project -in_memory -part xc7k70tfbg484-1
+  create_project -in_memory -part xc7s100fgga484-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
@@ -147,7 +152,7 @@ OPTRACE "read constraints: implementation_pre" START { }
 OPTRACE "read constraints: implementation_pre" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }
-  link_design -top top -part xc7k70tfbg484-1 
+  link_design -top top -part xc7s100fgga484-1 
 OPTRACE "link_design" END { }
 OPTRACE "gray box cells" START { }
 OPTRACE "gray box cells" END { }

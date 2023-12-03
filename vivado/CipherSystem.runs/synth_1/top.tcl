@@ -70,9 +70,14 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param checkpoint.writeSynthRtdsInDcp 1
 set_param chipscope.maxJobs 5
+set_param synth.incrementalSynthesisCache C:/Users/xjh/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-30896-xjh-laptop/incrSyn
+set_msg_config -id {Common 17-41} -limit 10000000
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
-create_project -in_memory -part xc7k70tfbg484-1
+create_project -in_memory -part xc7s100fgga484-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
@@ -109,7 +114,7 @@ read_checkpoint -auto_incremental -incremental C:/Users/xjh/CodeSpace/verilog/Ci
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top top -part xc7k70tfbg484-1
+synth_design -top top -part xc7s100fgga484-1
 OPTRACE "synth_design" END { }
 if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
  send_msg_id runtcl-6 info "Synthesis results are not added to the cache due to CRITICAL_WARNING"
