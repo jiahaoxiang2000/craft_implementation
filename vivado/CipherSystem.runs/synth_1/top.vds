@@ -3,8 +3,8 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Sun Dec  3 08:09:40 2023
-# Process ID: 24232
+# Start of session at: Sun Dec  3 09:29:32 2023
+# Process ID: 27760
 # Current directory: C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.runs/synth_1
 # Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file: C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.runs/synth_1/top.vds
@@ -28,60 +28,28 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 19668
+INFO: [Synth 8-7075] Helper process launched with PID 14292
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:04 . Memory (MB): peak = 1410.375 ; gain = 442.078
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:04 . Memory (MB): peak = 1408.914 ; gain = 441.758
 ---------------------------------------------------------------------------------
-CRITICAL WARNING: [Synth 8-9873] overwriting previous definition of module 'craft_sbox' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_sbox.v:20]
-INFO: [Synth 8-9937] previous definition of design element 'craft_sbox' is here [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_sbox.v:20]
-CRITICAL WARNING: [Synth 8-9873] overwriting previous definition of module 'craft_round_constants' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_round_constants.v:44]
-INFO: [Synth 8-9937] previous definition of design element 'craft_round_constants' is here [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_round_constants.v:44]
-CRITICAL WARNING: [Synth 8-9873] overwriting previous definition of module 'craft_key_schedule' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_key_schedule.v:40]
-INFO: [Synth 8-9937] previous definition of design element 'craft_key_schedule' is here [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_key_schedule.v:40]
-CRITICAL WARNING: [Synth 8-9873] overwriting previous definition of module 'craft_sbox' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_sbox.v:20]
-INFO: [Synth 8-9937] previous definition of design element 'craft_sbox' is here [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_sbox.v:20]
-CRITICAL WARNING: [Synth 8-9873] overwriting previous definition of module 'craft_round' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_round.v:68]
-INFO: [Synth 8-9937] previous definition of design element 'craft_round' is here [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_round.v:68]
-WARNING: [Synth 8-6901] identifier 'add_key' is used before its declaration [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_encrypt.v:41]
-CRITICAL WARNING: [Synth 8-9873] overwriting previous definition of module 'craft_round_constants' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_round_constants.v:44]
-INFO: [Synth 8-9937] previous definition of design element 'craft_round_constants' is here [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_round_constants.v:44]
-CRITICAL WARNING: [Synth 8-9873] overwriting previous definition of module 'craft_key_schedule' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_key_schedule.v:40]
-INFO: [Synth 8-9937] previous definition of design element 'craft_key_schedule' is here [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_key_schedule.v:40]
-CRITICAL WARNING: [Synth 8-9873] overwriting previous definition of module 'craft_sbox' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_sbox.v:20]
-INFO: [Synth 8-9937] previous definition of design element 'craft_sbox' is here [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_sbox.v:20]
-CRITICAL WARNING: [Synth 8-9873] overwriting previous definition of module 'craft_round' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_round.v:68]
-INFO: [Synth 8-9937] previous definition of design element 'craft_round' is here [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_round.v:68]
-WARNING: [Synth 8-6901] identifier 'add_key' is used before its declaration [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_encrypt.v:41]
-CRITICAL WARNING: [Synth 8-9873] overwriting previous definition of module 'craft_encrypt' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_encrypt.v:101]
-INFO: [Synth 8-9937] previous definition of design element 'craft_encrypt' is here [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_encrypt.v:101]
 INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/top.v:4]
-INFO: [Synth 8-6157] synthesizing module 'craft_encrypt' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_encrypt.v:5]
-INFO: [Synth 8-6157] synthesizing module 'craft_round_constants' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_round_constants.v:1]
-INFO: [Synth 8-6155] done synthesizing module 'craft_round_constants' (0#1) [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_round_constants.v:1]
-INFO: [Synth 8-6157] synthesizing module 'craft_key_schedule' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_key_schedule.v:1]
-INFO: [Synth 8-6155] done synthesizing module 'craft_key_schedule' (0#1) [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_key_schedule.v:1]
-INFO: [Synth 8-6157] synthesizing module 'craft_round' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_round.v:2]
-INFO: [Synth 8-6157] synthesizing module 'craft_sbox' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_sbox.v:1]
-INFO: [Synth 8-6155] done synthesizing module 'craft_sbox' (0#1) [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_sbox.v:1]
-INFO: [Synth 8-6155] done synthesizing module 'craft_round' (0#1) [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_round.v:2]
-WARNING: [Synth 8-7071] port 'add_key' of module 'craft_round' is unconnected for instance 'craft_round_inst_0' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_encrypt.v:84]
-WARNING: [Synth 8-7023] instance 'craft_round_inst_0' of module 'craft_round' has 5 connections declared, but only 4 given [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_encrypt.v:84]
-INFO: [Synth 8-6155] done synthesizing module 'craft_encrypt' (0#1) [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_encrypt.v:5]
+INFO: [Synth 8-6157] synthesizing module 'present_encrypt' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/present_encrypt.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'present_encrypt' (0#1) [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/present_encrypt.v:3]
 INFO: [Synth 8-6155] done synthesizing module 'top' (0#1) [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/top.v:4]
 WARNING: [Synth 8-3848] Net TK in module/entity top does not have driver. [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/top.v:13]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:05 . Memory (MB): peak = 1518.965 ; gain = 550.668
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:05 . Memory (MB): peak = 1517.426 ; gain = 550.270
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:01 ; elapsed = 00:00:05 . Memory (MB): peak = 1518.965 ; gain = 550.668
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:05 . Memory (MB): peak = 1517.426 ; gain = 550.270
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:01 ; elapsed = 00:00:05 . Memory (MB): peak = 1518.965 ; gain = 550.668
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:05 . Memory (MB): peak = 1517.426 ; gain = 550.270
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1518.965 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1517.426 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -92,54 +60,50 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1576.152 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1603.586 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1576.152 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1603.586 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:02 ; elapsed = 00:00:11 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished Constraint Validation : Time (s): cpu = 00:00:03 ; elapsed = 00:00:10 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k70tfbg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:02 ; elapsed = 00:00:11 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:03 ; elapsed = 00:00:10 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:02 ; elapsed = 00:00:11 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:03 ; elapsed = 00:00:10 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-327] inferring latch for variable 'ciphertext' [C:/Users/xjh/CodeSpace/verilog/CipherSystem/src/craft_encrypt.v:41]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:11 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:11 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input    8 Bit       Adders := 2     
+	   2 Input    8 Bit       Adders := 1     
 +---XORs : 
 	   2 Input     64 Bit         XORs := 2     
-	   2 Input     16 Bit         XORs := 6     
-	   4 Input     16 Bit         XORs := 2     
-	   2 Input      8 Bit         XORs := 4     
-	   2 Input      4 Bit         XORs := 4     
-	   2 Input      1 Bit         XORs := 8     
+	   2 Input      5 Bit         XORs := 1     
 +---Registers : 
+	              128 Bit    Registers := 1     
 	               64 Bit    Registers := 1     
-	                8 Bit    Registers := 2     
-	                4 Bit    Registers := 2     
-	                3 Bit    Registers := 2     
+	                8 Bit    Registers := 1     
 	                1 Bit    Registers := 2     
 +---Muxes : 
-	   2 Input   64 Bit        Muxes := 5     
+	   2 Input  128 Bit        Muxes := 1     
+	   2 Input   64 Bit        Muxes := 1     
+	  17 Input    4 Bit        Muxes := 18    
 	   2 Input    1 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -157,32 +121,26 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-7129] Port r[7] in module craft_key_schedule is either unconnected or has no load
-WARNING: [Synth 8-7129] Port r[6] in module craft_key_schedule is either unconnected or has no load
-WARNING: [Synth 8-7129] Port r[5] in module craft_key_schedule is either unconnected or has no load
-WARNING: [Synth 8-7129] Port r[4] in module craft_key_schedule is either unconnected or has no load
-WARNING: [Synth 8-7129] Port r[3] in module craft_key_schedule is either unconnected or has no load
-WARNING: [Synth 8-7129] Port r[2] in module craft_key_schedule is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:03 ; elapsed = 00:00:13 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:03 ; elapsed = 00:00:12 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:04 ; elapsed = 00:00:17 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:05 ; elapsed = 00:00:16 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:04 ; elapsed = 00:00:17 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished Timing Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:16 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:04 ; elapsed = 00:00:17 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished Technology Mapping : Time (s): cpu = 00:00:05 ; elapsed = 00:00:16 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -200,37 +158,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:05 ; elapsed = 00:00:20 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished IO Insertion : Time (s): cpu = 00:00:06 ; elapsed = 00:00:19 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:05 ; elapsed = 00:00:20 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:06 ; elapsed = 00:00:19 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:05 ; elapsed = 00:00:20 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:06 ; elapsed = 00:00:19 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:05 ; elapsed = 00:00:20 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:06 ; elapsed = 00:00:19 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:20 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:19 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:05 ; elapsed = 00:00:20 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:06 ; elapsed = 00:00:19 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -247,42 +205,36 @@ Report Cell Usage:
 |      |Cell |Count |
 +------+-----+------+
 |1     |BUFG |     1|
-|2     |LUT1 |     4|
-|3     |LUT2 |    75|
-|4     |LUT3 |    83|
-|5     |LUT4 |    89|
-|6     |LUT5 |     7|
-|7     |LUT6 |   218|
-|8     |FDRE |    89|
-|9     |FDSE |     4|
-|10    |LD   |    64|
-|11    |IBUF |     2|
-|12    |OBUF |     1|
+|2     |LUT1 |     3|
+|3     |LUT2 |    66|
+|4     |LUT3 |   117|
+|5     |LUT4 |    16|
+|6     |LUT5 |     2|
+|7     |LUT6 |   137|
+|8     |FDRE |   201|
+|9     |IBUF |     2|
+|10    |OBUF |     1|
 +------+-----+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:05 ; elapsed = 00:00:20 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:06 ; elapsed = 00:00:19 . Memory (MB): peak = 1603.586 ; gain = 636.430
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:03 ; elapsed = 00:00:19 . Memory (MB): peak = 1576.152 ; gain = 550.668
-Synthesis Optimization Complete : Time (s): cpu = 00:00:05 ; elapsed = 00:00:21 . Memory (MB): peak = 1576.152 ; gain = 607.855
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:04 ; elapsed = 00:00:18 . Memory (MB): peak = 1603.586 ; gain = 550.270
+Synthesis Optimization Complete : Time (s): cpu = 00:00:06 ; elapsed = 00:00:19 . Memory (MB): peak = 1603.586 ; gain = 636.430
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1576.152 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 64 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1603.586 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
-INFO: [Opt 31-138] Pushed 1 inverter(s) to 64 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1576.152 ; gain = 0.000
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1603.586 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 64 instances were transformed.
-  LD => LDCE (inverted pins: G): 64 instances
+No Unisim elements were transformed.
 
-Synth Design complete | Checksum: 435a7cd6
+Synth Design complete | Checksum: 804205fc
 INFO: [Common 17-83] Releasing license: Synthesis
-45 Infos, 14 Warnings, 10 Critical Warnings and 0 Errors encountered.
+25 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:07 ; elapsed = 00:00:24 . Memory (MB): peak = 1576.152 ; gain = 1001.984
-INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1576.152 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:07 ; elapsed = 00:00:23 . Memory (MB): peak = 1603.586 ; gain = 1029.340
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1603.586 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.runs/synth_1/top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Dec  3 08:10:11 2023...
+INFO: [Common 17-206] Exiting Vivado at Sun Dec  3 09:30:02 2023...

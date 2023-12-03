@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Sun Dec  3 08:10:50 2023
+| Date         : Sun Dec  3 09:30:46 2023
 | Host         : xjh-laptop running 64-bit major release  (build 9200)
 | Command      : report_drc -file top_drc_routed.rpt -pb top_drc_routed.pb -rpx top_drc_routed.rpx
 | Design       : top
@@ -61,22 +61,7 @@ Related violations: <none>
 
 RTSTAT-10#1 Warning
 No routable loads  
-80 net(s) have no routable loads. The problem bus(es) and/or net(s) are craft_encrypt_inst/craft_round_inst_0/add_key[10],
-craft_encrypt_inst/craft_round_inst_0/add_key[13],
-craft_encrypt_inst/craft_round_inst_0/add_key[14],
-craft_encrypt_inst/craft_round_inst_0/add_key[17],
-craft_encrypt_inst/craft_round_inst_0/add_key[18],
-craft_encrypt_inst/craft_round_inst_0/add_key[1],
-craft_encrypt_inst/craft_round_inst_0/add_key[21],
-craft_encrypt_inst/craft_round_inst_0/add_key[22],
-craft_encrypt_inst/craft_round_inst_0/add_key[25],
-craft_encrypt_inst/craft_round_inst_0/add_key[26],
-craft_encrypt_inst/craft_round_inst_0/add_key[29],
-craft_encrypt_inst/craft_round_inst_0/add_key[2],
-craft_encrypt_inst/craft_round_inst_0/add_key[5],
-craft_encrypt_inst/craft_round_inst_0/add_key[6],
-craft_encrypt_inst/craft_round_inst_0/add_key[9]
- (the first 15 of 17 listed nets/buses).
+64 net(s) have no routable loads. The problem bus(es) and/or net(s) are present_encrypt_inst/ciphertext[63:0].
 Related violations: <none>
 
 

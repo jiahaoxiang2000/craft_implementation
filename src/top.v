@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-`include "craft_encrypt.v"
+`include "present_encrypt.v"
 
 module top (
     input wire CLK100MHZ,
@@ -29,11 +29,10 @@ module top (
   wire done;
   wire [63:0] ciphertext;
 
-  (* dont_touch = "yes" *) craft_encrypt craft_encrypt_inst (
+  (* dont_touch = "yes" *) present_encrypt present_encrypt_inst (
       .clk(CLK100MHZ),
       .rst_n(CPU_RESETN),
       .plaintext(plaintext),
-      .tweak(tweak),
       .key(key),
       .done(done),
       .ciphertext(ciphertext)
