@@ -3,14 +3,48 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Wed Nov 15 21:03:49 2023
-# Process ID: 16084
-# Current directory: C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent19888 C:\Users\xjh\CodeSpace\verilog\CipherSystem\vivado\CipherSystem.xpr
-# Log file: C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/vivado.log
-# Journal file: C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado\vivado.jou
-# Running On: xjh-laptop, OS: Windows, CPU Frequency: 2918 MHz, CPU Physical cores: 14, Host memory: 34070 MB
+# Start of session at: Sun Feb 18 08:41:24 2024
+# Process ID: 32080
+# Current directory: C:/Users/xjh/WorkSpace/verilog/craft_implementation/vivado
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent33692 C:\Users\xjh\WorkSpace\verilog\craft_implementation\vivado\CipherSystem.xpr
+# Log file: C:/Users/xjh/WorkSpace/verilog/craft_implementation/vivado/vivado.log
+# Journal file: C:/Users/xjh/WorkSpace/verilog/craft_implementation/vivado\vivado.jou
+# Running On: xjh-pc, OS: Windows, CPU Frequency: 3494 MHz, CPU Physical cores: 14, Host memory: 68447 MB
 #-----------------------------------------------------------
 start_gui
-open_project C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.xpr
+open_project C:/Users/xjh/WorkSpace/verilog/craft_implementation/vivado/CipherSystem.xpr
 update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs synth_1 -jobs 20
+wait_on_run synth_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+export_ip_user_files -of_objects  [get_files C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/craft_key_register.v] -no_script -reset -force -quiet
+export_ip_user_files -of_objects  [get_files C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/craft_mix_columns.v] -no_script -reset -force -quiet
+export_ip_user_files -of_objects  [get_files C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/craft_state_register.v] -no_script -reset -force -quiet
+remove_files  {C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/craft_key_register.v C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/craft_mix_columns.v C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/craft_state_register.v}
+export_ip_user_files -of_objects  [get_files C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/craft_encrypt_tb.v] -no_script -reset -force -quiet
+export_ip_user_files -of_objects  [get_files C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/present_encrypt_tb.v] -no_script -reset -force -quiet
+remove_files  -fileset sim_1 {C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/craft_encrypt_tb.v C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/present_encrypt_tb.v}
+import_files -norecurse {C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/craft_key_schedule.v C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/craft_round.v C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/craft_round_constants.v C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/craft_encrypt.v C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/craft_sbox.v}
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+import_files -fileset sim_1 -norecurse {C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/tb_craft_sbox.v C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/tb_craft_key_schedule.v C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/tb_craft_encrypt.v C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/tb_craft_round_constants.v C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/tb_top.v C:/Users/xjh/WorkSpace/verilog/craft_implementation/src/tb_craft_round.v}
+update_compile_order -fileset sim_1
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top top_tb [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sim_1
+reset_run synth_1
+launch_runs impl_1 -jobs 20
+wait_on_run impl_1
+open_run impl_1
+report_utilization -name utilization_1
+set_property part xc7s100fgga484-1 [current_project]
+reset_run synth_1
+launch_runs impl_1 -jobs 20
+wait_on_run impl_1
+close_design; open_run impl_1
+report_utilization -name utilization_1
