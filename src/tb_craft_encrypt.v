@@ -1,6 +1,4 @@
-`include "present_encrypt.v"
-
-module present_encrypt_tb ();
+module tb_craft_encrypt ();
 
   parameter PERIOD = 2;
   reg CLK;
@@ -15,15 +13,17 @@ module present_encrypt_tb ();
     forever #(PERIOD / 2) CLK = ~CLK;
   end
 
-  reg [63:0] plaintext = 64'h0000000000000000;
-  reg [127:0] key = 128'h00000000000000000000000000000000;
+  reg [63:0] plaintext = 64'h5734F006D8D88A3E;
+  reg [63:0] tweak = 64'h54CD94FFD0670A58;
+  reg [127:0] key = 128'h27a6_781a_43f3_64bc_9167_08d5_fbb5_aefe;
   wire done;
   wire [63:0] ciphertext;
 
-  present_encrypt present_encrypt_tb (
+  craft_encrypt craft_encrypt_tb (
       .clk(CLK),
       .rst_n(RST),
       .plaintext(plaintext),
+      .tweak(tweak),
       .key(key),
       .done(done),
       .ciphertext(ciphertext)

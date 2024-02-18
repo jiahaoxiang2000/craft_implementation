@@ -3,14 +3,13 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Wed Nov 15 21:03:49 2023
-# Process ID: 16084
-# Current directory: C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent19888 C:\Users\xjh\CodeSpace\verilog\CipherSystem\vivado\CipherSystem.xpr
-# Log file: C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/vivado.log
-# Journal file: C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado\vivado.jou
-# Running On: xjh-laptop, OS: Windows, CPU Frequency: 2918 MHz, CPU Physical cores: 14, Host memory: 34070 MB
+# Start of session at: Sun Feb 18 08:41:24 2024
+# Process ID: 32080
+# Current directory: C:/Users/xjh/WorkSpace/verilog/craft_implementation/vivado
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent33692 C:\Users\xjh\WorkSpace\verilog\craft_implementation\vivado\CipherSystem.xpr
+# Log file: C:/Users/xjh/WorkSpace/verilog/craft_implementation/vivado/vivado.log
+# Journal file: C:/Users/xjh/WorkSpace/verilog/craft_implementation/vivado\vivado.jou
+# Running On: xjh-pc, OS: Windows, CPU Frequency: 3494 MHz, CPU Physical cores: 14, Host memory: 68447 MB
 #-----------------------------------------------------------
 start_gui
-open_project C:/Users/xjh/CodeSpace/verilog/CipherSystem/vivado/CipherSystem.xpr
-update_compile_order -fileset sources_1
+open_project C:/Users/xjh/WorkSpace/verilog/craft_implementation/vivado/CipherSystem.xpr
