@@ -1,11 +1,11 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Sun Feb 18 09:38:25 2024
+| Date         : Sun Feb 18 09:45:45 2024
 | Host         : xjh-pc running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
-| Device       : xc7s100
+| Device       : xc7k70t
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 Control Set Information
@@ -61,7 +61,7 @@ Table of Contents
 | No           | No                    | No                     |               1 |            1 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |               7 |            2 |
-| Yes          | No                    | No                     |             128 |           43 |
+| Yes          | No                    | No                     |             128 |           47 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |               8 |            2 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
@@ -76,8 +76,8 @@ Table of Contents
 |  CLK100MHZ_IBUF_BUFG |                                           |                                                       |                1 |              1 |         1.00 |
 |  CLK100MHZ_IBUF_BUFG |                                           | craft_encrypt_inst/craft_round_constants_inst_0/SR[0] |                2 |              7 |         3.50 |
 |  CLK100MHZ_IBUF_BUFG | craft_encrypt_inst/r[7]_i_1_n_0           | craft_encrypt_inst/craft_round_constants_inst_0/SR[0] |                2 |              8 |         4.00 |
+|  CLK100MHZ_IBUF_BUFG | craft_encrypt_inst/ciphertext[63]_i_1_n_0 |                                                       |               24 |             64 |         2.67 |
 |  CLK100MHZ_IBUF_BUFG | craft_encrypt_inst/state[63]_i_1_n_0      |                                                       |               23 |             64 |         2.78 |
-|  CLK100MHZ_IBUF_BUFG | craft_encrypt_inst/ciphertext[63]_i_1_n_0 |                                                       |               20 |             64 |         3.20 |
 +----------------------+-------------------------------------------+-------------------------------------------------------+------------------+----------------+--------------+
 
 

@@ -9,10 +9,10 @@
 # set_property -dict {PACKAGE_PIN E3 IOSTANDARD LVCMOS33} [get_ports CLK100MHZ]
 
 # xc7s100fgga484-1
- set_property -dict {PACKAGE_PIN U18 IOSTANDARD LVCMOS33} [get_ports CLK100MHZ]
+# set_property -dict {PACKAGE_PIN U18 IOSTANDARD LVCMOS33} [get_ports CLK100MHZ]
 
 # xc7k70tfbg484-1 
-# set_property -dict {PACKAGE_PIN V19 IOSTANDARD LVCMOS33} [get_ports CLK100MHZ]
+ set_property -dict {PACKAGE_PIN V19 IOSTANDARD LVCMOS33} [get_ports CLK100MHZ]
 
 create_clock -period 10.000 -name sys_clk_pin -waveform {0.000 5.000} -add [get_ports CLK100MHZ]
 

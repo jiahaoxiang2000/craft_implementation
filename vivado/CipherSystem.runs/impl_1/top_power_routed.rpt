@@ -1,11 +1,11 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Sun Feb 18 09:38:43 2024
+| Date             : Sun Feb 18 09:45:54 2024
 | Host             : xjh-pc running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
-| Device           : xc7s100fgga484-1
+| Device           : xc7k70tfbg484-1
 | Design State     : routed
 | Grade            : commercial
 | Process          : maximum
@@ -30,12 +30,12 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.143        |
+| Total On-Chip Power (W)  | 0.148        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
 | Dynamic (W)              | 0.003        |
-| Device Static (W)        | 0.140        |
-| Effective TJA (C/W)      | 2.7          |
+| Device Static (W)        | 0.145        |
+| Effective TJA (C/W)      | 2.5          |
 | Max Ambient (C)          | 84.6         |
 | Junction Temperature (C) | 25.4         |
 | Confidence Level         | Medium       |
@@ -54,13 +54,13 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.001 |        3 |       --- |             --- |
 | Slice Logic    |    <0.001 |      358 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      184 |     64000 |            0.29 |
-|   Register     |    <0.001 |      144 |    128000 |            0.11 |
+|   LUT as Logic |    <0.001 |      184 |     41000 |            0.45 |
+|   Register     |    <0.001 |      144 |     82000 |            0.18 |
 |   Others       |     0.000 |        5 |       --- |             --- |
 | Signals        |    <0.001 |      217 |       --- |             --- |
-| I/O            |    <0.001 |        3 |       338 |            0.89 |
-| Static Power   |     0.140 |          |           |                 |
-| Total          |     0.143 |          |           |                 |
+| I/O            |    <0.001 |        3 |       285 |            1.05 |
+| Static Power   |     0.145 |          |           |                 |
+| Total          |     0.148 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -70,8 +70,8 @@ Table of Contents
 +-----------+-------------+------------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A)  | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+------------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.057* |       0.003 |      0.054 |       0.341 | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.033* |       0.000 |      0.033 |       0.167 | Unspecified | NA         |
+| Vccint    |       1.000 |     0.078* |       0.003 |      0.075 |       0.515 | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.020* |       0.000 |      0.020 |       0.057 | Unspecified | NA         |
 | Vcco33    |       3.300 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -79,8 +79,11 @@ Table of Contents
 | Vcco135   |       1.350 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.002* |       0.000 |      0.002 |       0.060 | Unspecified | NA         |
-| Vccadc    |       1.800 |      0.025 |       0.000 |      0.025 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.001* |       0.000 |      0.001 |       0.040 | Unspecified | NA         |
+| MGTAVcc   |       1.000 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| MGTAVtt   |       1.200 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| MGTVccaux |       1.800 |      0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccadc    |       1.800 |      0.030 |       0.000 |      0.030 |       NA    | Unspecified | NA         |
 +-----------+-------------+------------+-------------+------------+-------------+-------------+------------+
 * Power-up current exceeds the steady-state current
 
@@ -109,10 +112,10 @@ Table of Contents
 
 +-----------------------+--------------------------+
 | Ambient Temp (C)      | 25.0                     |
-| ThetaJA (C/W)         | 2.7                      |
+| ThetaJA (C/W)         | 2.5                      |
 | Airflow (LFM)         | 250                      |
 | Heat Sink             | medium (Medium Profile)  |
-| ThetaSA (C/W)         | 4.8                      |
+| ThetaSA (C/W)         | 4.2                      |
 | Board Selection       | medium (10"x10")         |
 | # of Board Layers     | 12to15 (12 to 15 Layers) |
 | Board Temperature (C) | 25.0                     |
